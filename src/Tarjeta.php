@@ -5,15 +5,26 @@ class Tarjeta implements TarjetaInterface {
 	public $bandera;
 	
     public function recargar($monto) {
-      // Esto esta hecho mal a proposito. montos aceptados:10, 20, 30, 50, 100, 510,15 y 962,59
+      // Montos aceptados:10, 20, 30, 50, 100, 510.15 y 962.59
       if ($monto == 10 || $monto == 20 || $monto == 30 || $monto == 50 || $monto == 100 || $monto == 510.15 || $monto == 962.59) {
+        if($monto==510.15)
+        {
+          $monto += 81.93;
+        }
+
+        if($monto == 962.59)
+        {
+          $monto += 221.58;
+        }
+
         $this->saldo += $monto;
-		$bandera= TRUE;
+		    $bandera= TRUE;
       }
       else
       {
           $bandera=FALSE;
       }
+
       return $bandera;
     }
     /**
