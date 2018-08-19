@@ -11,13 +11,13 @@ class ColectivoTest extends TestCase {
         $colectivo = new Colectivo(); 
         $tarjeta = new Tarjeta();
 
-        $this->assertEquals($colectivo->pagarCon($tarjeta),$tarjeta->saldo>=14.80);
+        $this->assertEquals($colectivo->pagarCon($tarjeta),$tarjeta->obtenerSaldo()>=14.80);
     }
 
     public function testSinSaldo() {
         $colectivo = new Colectivo(); 
         $tarjeta = new Tarjeta();
 
-        $this->assertEquals($colectivo->pagarCon($tarjeta), $tarjeta->saldo<14.80);
+        $this->assertEquals($colectivo->pagarCon($tarjeta), $tarjeta->obtenerSaldo()<14.80);
     }
 }
