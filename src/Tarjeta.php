@@ -3,7 +3,7 @@ namespace TrabajoTarjeta;
 class Tarjeta implements TarjetaInterface {
   protected $saldo;
   public $bandera;
-  public $plus;
+  public $plus=2;
 	
     public function recargar($monto) {
       // Montos aceptados:10, 20, 30, 50, 100, 510.15 y 962.59
