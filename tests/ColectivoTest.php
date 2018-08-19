@@ -6,7 +6,14 @@ use PHPUnit\Framework\TestCase;
 
 class ColectivoTest extends TestCase {
         
-    public function testAlgoUtil() {
-        $this->assertEquals(1+1,2);
+    public function testConSaldo() {
+
+        $this->assertEquals($colectivo->pagarCon($tarjeta),$tarjeta->saldo>=14.80);
+    }
+
+    public function testSinSaldo() {
+        
+        $this->assertFalse()
+        $this->assertEquals($colectivo->pagarCon($tarjeta), $tarjeta->saldo<14.80);
     }
 }
