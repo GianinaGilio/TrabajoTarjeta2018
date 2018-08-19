@@ -45,7 +45,7 @@ class TarjetaTest extends TestCase {
   }
 
   public function testCantViajePlus(){
-     
+    $colectivo= new Colectivo;
       $tarjeta = new Tarjeta;
 
       $this->assertEquals($tarjeta->plus,2);
