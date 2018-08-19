@@ -62,6 +62,8 @@ class TarjetaTest extends TestCase {
     $this->assertTrue($colectivo->pagarCon($tarjeta));
     $this->assertEquals($tarjeta->plus,0);
     $this->assertFalse($colectivo->pagarCon($tarjeta));
+    $this->assertTrue($tarjeta->recargar(30));
+    $this->assertEquals($tarjeta->saldo,0.4);
 
   }
 
