@@ -49,6 +49,14 @@ class TarjetaTest extends TestCase {
       $tarjeta = new Tarjeta;
 
       $this->assertEquals($tarjeta->plus,2);
+      $this->assertTrue($colectivo->pagarCon($tarjeta));
+      $this->assertEquals($tarjeta->plus,1);
+      $this->assertTrue($colectivo->pagarCon($tarjeta));
+      $this->assertEquals($tarjeta->plus,0);
+      $this->assertFalse($colectivo->pagarCon($tarjeta));
+      $this->assertTrue($tarjeta->recargar(30));
+      $this->assertEquals($tarjeta->plus,2);
+
 
   }
 
@@ -56,14 +64,14 @@ class TarjetaTest extends TestCase {
   { $colectivo= new Colectivo;
     $tarjeta=new Tarjeta;
 
-    $this->assertTrue($tarjeta->recargar(10));
     $this->assertTrue($colectivo->pagarCon($tarjeta));
-    $this->assertEquals($tarjeta->plus,1);
     $this->assertTrue($colectivo->pagarCon($tarjeta));
-    $this->assertEquals($tarjeta->plus,0);
     $this->assertFalse($colectivo->pagarCon($tarjeta));
     $this->assertTrue($tarjeta->recargar(30));
     $this->assertEquals($tarjeta->obtenerSaldo(),10.4);
+    $this->assertTrue($colectivo->pagarCon($tarjeta));
+    $this->assertTrue($tarjeta->recargar(30));
+    $this->assertEquals($tarjeta->obtenerSaldo(),25,6);
 
   }
 
