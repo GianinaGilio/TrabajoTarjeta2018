@@ -16,22 +16,7 @@ class TarjetaTest extends TestCase {
         $this->assertEquals($tarjeta->obtenerSaldo(), 10);
 
         $this->assertTrue($tarjeta->recargar(20));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 20);
-
-        $this->assertTrue($tarjeta->recargar(30));
         $this->assertEquals($tarjeta->obtenerSaldo(), 30);
-
-        $this->assertTrue($tarjeta->recargar(50));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 50);
-
-        $this->assertTrue($tarjeta->recargar(100));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 100);
-
-        $this->assertTrue($tarjeta->recargar(510.15));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 592.08);
-
-        $this->assertTrue($tarjeta->recargar(962.59));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 1184.17);
     }
 
     /**
@@ -40,8 +25,7 @@ class TarjetaTest extends TestCase {
     public function testCargaSaldoInvalido() {
       $tarjeta = new Tarjeta;
 
-     // $this->assertFalse($tarjeta->recargar(15));
-     // $this->assertEquals($tarjeta->obtenerSaldo(), 0);
-
+      $this->assertFalse($tarjeta->recargar(15));
+      $this->assertEquals($tarjeta->obtenerSaldo(), 0);
   }
 }
