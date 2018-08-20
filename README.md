@@ -63,18 +63,20 @@ Además de las tareas planteadas, cada grupo tiene tareas pendientes de la itera
 
 IMPORTANTE: Como punto de control, alguna de estas dos funcionalidades: "Viaje plus" o "Franquicia de Boleto" tiene que estar lista para revisar a mitad de la iteración. (21 de Agosto).
 
-Descuento de saldos.
-Cada vez que una tarjeta paga un boleto, descuenta el valor del monto gastado.
-Si la tarjeta se queda sin saldo, la operación $colectivo->pagarCon($tarjeta) devuelve FALSE,
-Escribir un test que valide dos casos, pagar con saldo y pagar sin saldo.
-Viaje plus
-Si la tarjeta se queda sin crédito, puede otorgar hasta dos viajes plus.
-Cuando se vuelve a cargar la tarjeta, se descuenta el saldo de lo que se haya consumido en concepto de viaje plus.
-Escribir un test que valide que se pueden dar hasta dos viajes plus.
-Escribir un test que valide que el saldo de la tarjeta descuenta correctamente el/los viaje/s plus otorgado/s.
-Franquicia de Boleto.
-Existen dos tipos de franquicia en lo que refiere a tarjetas, las franquicias parciales, como el medio boleto estudiantil o el universitario, y las completas como las de jubilados.
-Implementar cada tipo de tarjeta como una Herencia de la tarjeta original.
-Para esta iteración considerar simplemente que cuando se paga con una tarjeta del tipo MedioBoleto el costo del pasaje vale la mitad, independientemente de cuantas veces se use y que dia de la semana sea.
-Escribir un test que valide que una tarjeta de FranquiciaCompleta siempre puede pagar un boleto.
-Escribir un test que valide que el monto del boleto pagado con medio boleto es siempre la mitad del normal.
+## Descuento de saldos.
+- Cada vez que una tarjeta paga un boleto, descuenta el valor del monto gastado.
+- Si la tarjeta se queda sin saldo, la operación $colectivo->pagarCon($tarjeta) devuelve FALSE,
+- Escribir un test que valide dos casos, pagar con saldo y pagar sin saldo.
+
+## Viaje plus
+- Si la tarjeta se queda sin crédito, puede otorgar hasta dos viajes plus.
+- Cuando se vuelve a cargar la tarjeta, se descuenta el saldo de lo que se haya consumido en concepto de viaje plus.
+- Escribir un test que valide que se pueden dar hasta dos viajes plus.
+- Escribir un test que valide que el saldo de la tarjeta descuenta correctamente el/los viaje/s plus otorgado/s.
+
+## Franquicia de Boleto.
+- Existen dos tipos de franquicia en lo que refiere a tarjetas, las franquicias parciales, como el medio boleto estudiantil o el universitario, y las completas como las de jubilados.
+- Implementar cada tipo de tarjeta como una Herencia de la tarjeta original.
+- Para esta iteración considerar simplemente que cuando se paga con una tarjeta del tipo MedioBoleto el costo del pasaje vale la mitad, independientemente de cuantas veces se use y que dia de la semana sea.
+- Escribir un test que valide que una tarjeta de FranquiciaCompleta siempre puede pagar un boleto.
+- Escribir un test que valide que el monto del boleto pagado con medio boleto es siempre la mitad del normal.
