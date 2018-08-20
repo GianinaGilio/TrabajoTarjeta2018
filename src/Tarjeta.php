@@ -4,7 +4,7 @@ class Tarjeta implements TarjetaInterface {
   protected $saldo;
   public $bandera;
   public $plus=2;
-	
+  public $precio=14.80;
     public function recargar($monto) {
       // Montos aceptados:10, 20, 30, 50, 100, 510.15 y 962.59
       if ($monto == 10 || $monto == 20 || $monto == 30 || $monto == 50 || $monto == 100 || $monto == 510.15 || $monto == 962.59) {
@@ -52,3 +52,9 @@ class Tarjeta implements TarjetaInterface {
       return $this->saldo;
     }
 }
+
+class MedioBoleto extends Tarjeta {
+	
+}
+
+class FranquiciaCompleta extends Tarjeta {}
