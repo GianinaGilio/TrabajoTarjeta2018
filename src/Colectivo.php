@@ -31,7 +31,7 @@ class Colectivo implements ColectivoInterface{
         else
         {
             $tarjeta->saldo -=14.80;
-            return TRUE; // No se si hay que retornar TRUE o lo que queda de saldo
+            return $tarjeta->saldo; 
         }
     }
 
