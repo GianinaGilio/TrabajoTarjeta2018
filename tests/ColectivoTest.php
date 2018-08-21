@@ -11,7 +11,7 @@ class ColectivoTest extends TestCase {
        $colectivo = new Colectivo(144,"RosarioBus",3); 
         $tarjeta = new Tarjeta();
 
-        $this->assertEquals($colectivo->pagarCon($tarjeta),$tarjeta->obtenerSaldo()>=14.80);
+        $this->assertEquals($colectivo->pagarCon($tarjeta),$tarjeta->obtenerSaldo()>=14.80||$tarjeta->plus>=1);
     }
 
     public function testpagarSinSaldo() {
