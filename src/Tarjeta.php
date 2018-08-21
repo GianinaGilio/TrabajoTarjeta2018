@@ -54,7 +54,9 @@ class Tarjeta implements TarjetaInterface {
 }
 
 class MedioBoleto extends Tarjeta {
-	
+	public $precio=7.40;
 }
 
-class FranquiciaCompleta extends Tarjeta {}
+class FranquiciaCompleta extends Tarjeta {
+	public $precio=0.0;
+}
