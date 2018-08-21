@@ -17,7 +17,7 @@ class ColectivoTest extends TestCase {
     public function testpagarSinSaldo() {
        $colectivo = new Colectivo(144,"RosarioBus",5); 
         $tarjeta = new Tarjeta();
-
+		$tarjeta->plus=0;
         $this->assertFalse($colectivo->pagarCon($tarjeta));
     }
 
