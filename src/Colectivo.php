@@ -30,7 +30,7 @@ class Colectivo implements ColectivoInterface{
         }
         else
         {
-            $tarjeta->saldo -=14.80;
+            $tarjeta->saldo -=$tarjeta->precio;
             return $tarjeta->saldo; 
         }
     }
