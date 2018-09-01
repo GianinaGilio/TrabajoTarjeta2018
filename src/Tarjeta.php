@@ -1,7 +1,7 @@
 <?php
 namespace TrabajoTarjeta;
 class Tarjeta implements TarjetaInterface {
-  protected $saldo;
+  protected $saldo=0;
   public $bandera;
   protected $plus=2;
   public $precio=14.80;
@@ -52,7 +52,7 @@ class Tarjeta implements TarjetaInterface {
       return $this->saldo;
     }
 
-    public function cantidadViajesPlus(){
+    public function ViajesPlus(){
       if($this->plus>0)
       {
           $this->plus-=1;
@@ -60,5 +60,9 @@ class Tarjeta implements TarjetaInterface {
       }
       return FALSE;
 
+    }
+
+    public function obtenerCantidadPlus(){
+      return $this->plus;
     }
 }
