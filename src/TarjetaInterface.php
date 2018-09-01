@@ -21,5 +21,5 @@ interface TarjetaInterface {
      * @return float
      */
     public function obtenerSaldo();
-
+    public function cantidadViajesPlus();
 }

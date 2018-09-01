@@ -29,14 +29,7 @@ class Colectivo implements ColectivoInterface{
     public function pagarCon(TarjetaInterface $tarjeta){
         if($tarjeta->precio != 0 && $tarjeta->obtenerSaldo() < 14.80)
         {
-            
-            if($tarjeta->plus>0)
-            {
-                $tarjeta->plus-=1;
-                return TRUE;
-            }
-
-            return FALSE;
+            $tarjeta->cantidadViajesPlus();
         }
         else
         {

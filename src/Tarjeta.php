@@ -51,12 +51,14 @@ class Tarjeta implements TarjetaInterface {
     public function obtenerSaldo() {
       return $this->saldo;
     }
-}
 
-class MedioBoleto extends Tarjeta {
-	public $precio=7.40;
-}
+    public function cantidadViajesPlus(){
+      if($this->plus>0)
+      {
+          $this->plus-=1;
+          return TRUE;
+      }
+      return FALSE;
 
-class FranquiciaCompleta extends Tarjeta {
-	public $precio=0.0;
+    }
 }
