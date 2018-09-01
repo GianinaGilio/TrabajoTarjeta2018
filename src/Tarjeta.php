@@ -52,7 +52,7 @@ class Tarjeta implements TarjetaInterface {
       return $this->saldo;
     }
 
-    public function ViajesPlus(){
+    public function DescuentoViajesPlus(){
       if($this->plus>0)
       {
           $this->plus-=1;
