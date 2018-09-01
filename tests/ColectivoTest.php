@@ -21,7 +21,4 @@ class ColectivoTest extends TestCase {
         $this->assertFalse($colectivo->pagarCon($tarjeta));
     }
 
-    public function testAlgoUtil() {
-        $this->assertEquals(1+1,2);
-   }
 }
