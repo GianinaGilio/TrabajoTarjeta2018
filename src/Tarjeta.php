@@ -2,7 +2,7 @@
 namespace TrabajoTarjeta;
 class Tarjeta implements TarjetaInterface {
   protected $saldo=0;
-  public $bandera=true;
+  public $bandera=0;
   protected $plus=2;
   public $precio=14.80;
     public function recargar($monto) {
@@ -64,7 +64,7 @@ class Tarjeta implements TarjetaInterface {
       }
       else
       {
-        return $this->bandera=false;
+        return $this->bandera=1;
       }
 
     }

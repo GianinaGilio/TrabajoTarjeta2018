@@ -30,6 +30,11 @@ class Colectivo implements ColectivoInterface{
         if($tarjeta->precio != 0 && $tarjeta->obtenerSaldo() < 14.80)
         {
             $tarjeta->descuentoViajesPlus();
+            if($tarjeta->bandera=0)
+            {
+                return TRUE;
+            }
+            return FALSE;
         }
         else
         {
