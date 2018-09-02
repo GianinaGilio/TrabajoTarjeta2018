@@ -91,7 +91,7 @@ En esta iteración daremos una introducción a la manipulación de fechas y hora
 
 - Además el boleto tiene una descripcion extra indicando si se canceló viaje plus con el pago de este boleto (Ejemplo: Abona viajes plus 29.63 y).
 
-- Deben crearse los atributos faltantes de las correspondientes clases, si los hubiere. Considerar la siguiente imagen para entender las posibles variaciones de un boleto:
+- Deben crearse los atributos faltantes de las correspondientes clases, si los hubiere. Considerar la [siguiente imagen](https://github.com/dagostinoips/TrabajoTarjeta2018/issues/4#issuecomment-417055819) para entender las posibles variaciones de un boleto:
 
 - Escribir los tests correspondientes a los posibles tipos de boletos a obtener según el tipo de tarjeta.
 
