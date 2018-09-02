@@ -60,13 +60,12 @@ class Tarjeta implements TarjetaInterface {
       if($this->plus>0)
       {
           $this->plus-=1;
-          return TRUE;
+          return True;
       }
       else
       {
-        return FALSE;
+        return False;
       }
-      
 
     }
 
