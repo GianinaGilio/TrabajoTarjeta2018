@@ -60,11 +60,11 @@ class Tarjeta implements TarjetaInterface {
       if($this->plus>0)
       {
           $this->plus-=1;
-          return $this->$bandera;
+          return $this->bandera;
       }
       else
       {
-        return $this->$bandera=false;
+        return $this->bandera=false;
       }
 
     }
