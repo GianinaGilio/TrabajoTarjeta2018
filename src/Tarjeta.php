@@ -62,7 +62,11 @@ class Tarjeta implements TarjetaInterface {
           $this->plus-=1;
           return TRUE;
       }
-      return FALSE;
+      else
+      {
+        return FALSE;
+      }
+      
 
     }
 
