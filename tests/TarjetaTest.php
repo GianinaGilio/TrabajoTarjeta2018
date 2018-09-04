@@ -44,21 +44,28 @@ class TarjetaTest extends TestCase {
       $this->assertEquals($tarjeta->obtenerSaldo(), 0);
   }
 
+    /**
+     * Comprueba que la tarjeta pueda saber cuantos viajes plus tiene.
+     */
   public function testCantViajePlus(){
     $colectivo= new Colectivo;
       $tarjeta = new Tarjeta;
 
-      $this->assertEquals($tarjeta->plus,2);
+      $this->assertEquals($tarjeta->obtenerCantidadPlus(),2);
       $this->assertTrue($colectivo->pagarCon($tarjeta));
-      $this->assertEquals($tarjeta->plus,1);
+      $this->assertEquals($tarjeta->obtenerCantidadPlus(),1);
       $this->assertTrue($colectivo->pagarCon($tarjeta));
-      $this->assertEquals($tarjeta->plus,0);
+      $this->assertEquals($tarjeta->obtenerCantidadPlus(),0);
       $this->assertFalse($colectivo->pagarCon($tarjeta));
       $this->assertTrue($tarjeta->recargar(30));
-      $this->assertEquals($tarjeta->plus,2);
+      $this->assertEquals($tarjeta->obtenerCantidadPlus(),2);
 
 
   }
+
+      /**
+     * Comprueba que la tarjeta descuente correctamente los viajes plus.
+     */
 
   public function testDescuentoViajePlus()
   { $colectivo= new Colectivo;
@@ -74,5 +81,8 @@ class TarjetaTest extends TestCase {
     $this->assertEquals($tarjeta->obtenerSaldo(),15.6);
 
   }
+
+
+
 
 }
