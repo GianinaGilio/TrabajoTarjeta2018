@@ -3,15 +3,19 @@
 namespace TrabajoTarjeta;
 
 class Boleto implements BoletoInterface {
-	protected $id;
+	
+	//$valor permite coocer el total abonado
+	//$idTarjeta, la ID de la tarjeta
+	protected $idTarjeta;
 
+	
     protected $valor;
 
     protected $colectivo;
 
-    public function __construct($valor, $id, $colectivo, $tarjeta) {
+    public function __construct($valor, $idTarjeta, $colectivo, $tarjeta) {
         $this->valor = $valor;
-		$this->id = $id;
+		$this->idTarjeta = $idTarjeta;
     }
 
     /**
