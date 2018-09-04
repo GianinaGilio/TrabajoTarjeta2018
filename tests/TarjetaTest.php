@@ -82,19 +82,6 @@ class TarjetaTest extends TestCase {
 
   }
 
-   /**
-     * Comprueba que las franquicias medio boleto y franquicia completa funcionen correctamente.
-     */
-  public function testFranquicias()
-  { $colectivo= new Colectivo;
-    $tarjeta=new Tarjeta;
-    /**
-     * Hay que hacerlo.
-     */
-    $this->assertEquals(1,1);
-
-
-  }
 
 
 
