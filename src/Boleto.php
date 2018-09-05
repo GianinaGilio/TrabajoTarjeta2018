@@ -6,6 +6,7 @@ class Boleto implements BoletoInterface {
 	
 	//$valor permite coocer el total abonado
 	//$idTarjeta, la ID de la tarjeta
+	//$saldo el saldo restante de la tarjeta
 	protected $idTarjeta;
 
 	
@@ -13,9 +14,11 @@ class Boleto implements BoletoInterface {
 
     protected $colectivo;
 
-    public function __construct($valor, $idTarjeta, $colectivo, $tarjeta) {
+    public function __construct($valor, $idTarjeta, $saldo, $colectivo, $tarjeta) {
         $this->valor = $valor;
 		$this->idTarjeta = $idTarjeta;
+		$this->saldo = $saldo;
+		
     }
 
     /**
