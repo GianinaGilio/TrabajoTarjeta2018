@@ -4,6 +4,14 @@ namespace TrabajoTarjeta;
 
 class Boleto implements BoletoInterface {
 
+	/**$idTarjeta -> devuelve el numero ID de la tarjeta.
+	*  $valor -> total abonado.
+	* $linea_colectivo -> linea del colectivo que creo el boleto.
+	* $tipoTarjeta -> si es mediaFranquicia, FranquicaCompleta o normal
+	* $saldo -> saldo actual de la tarjeta.
+	*/
+	
+	protected $idTarjeta;
     protected $valor;
 
     protected $colectivo;
