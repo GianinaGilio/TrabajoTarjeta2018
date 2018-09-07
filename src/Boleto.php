@@ -14,11 +14,13 @@ class Boleto implements BoletoInterface {
 	protected $idTarjeta;
     protected $valor;
 
-    protected $colectivo;
+    protected $linea_colectivo;
 
-    public function __construct($valor, $colectivo, $tarjeta) {
+    public function __construct($valor, $linea_colectivo, $tarjeta) {
         $this->valor = $valor;
-    
+		$this->linea_colectivo = $linea_colectivo;
+		$this->idTarjeta = $tarjeta->id;
+		$this->saldo = $tarjeta->obtenerSaldo();
     }
 
     /**
