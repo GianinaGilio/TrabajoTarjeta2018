@@ -44,6 +44,9 @@ class TarjetaTest extends TestCase {
       $this->assertEquals($tarjeta->obtenerSaldo(), 0);
   }
 
+	/**
+     * Comprueba que la tarjeta pueda saber cuantos viajes plus tiene.
+     */
   public function testCantViajePlus(){
     $colectivo= new Colectivo;
       $tarjeta = new Tarjeta;
@@ -60,6 +63,9 @@ class TarjetaTest extends TestCase {
 
   }
 
+     /**
+     * Comprueba que la tarjeta descuente correctamente los viajes plus.
+     */
   public function testDescuentoViajePlus()
   { $colectivo= new Colectivo;
     $tarjeta=new Tarjeta;
