@@ -3,7 +3,7 @@ namespace TrabajoTarjeta;
 
 class MedioBoleto extends Tarjeta {
 	public $precio=7.40;
-	protected universitario= false;
+	protected $universitario = false;
 
 	public function descuentoSaldo() {
 //Falta poner el tiempo
@@ -13,8 +13,8 @@ class MedioBoleto extends Tarjeta {
 }
 
 class MedioBoletoUni extends MedioBoleto {
-	protected universitario= true;
-	protected  vecesUsado= 0;
+	protected $universitario= true;
+	protected  $vecesUsado= 0;
 
 
 
@@ -26,7 +26,7 @@ class MedioBoletoUni extends MedioBoleto {
 
 	if($this->vecesUsado == 2)
 	{
-		return return $this->saldo-=($this->precio*2);
+		return $this->saldo-=($this->precio*2);
 	}
 	else{
 		$this->vecesUsado += 1;
