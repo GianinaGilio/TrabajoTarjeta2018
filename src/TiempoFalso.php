@@ -2,7 +2,7 @@
 
 namespace TrabajoTarjeta;
 
-class TiempoFalso extends Tiempo{
+class TiempoFalso implements TiempoInterface{
     protected $tiempo;
 
     public function __construct($iniciarEn = 0){
