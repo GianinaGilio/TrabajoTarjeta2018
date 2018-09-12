@@ -53,7 +53,8 @@ class Tarjeta implements TarjetaInterface {
     }
 
     public function descuentoSaldo() {
-      return $this->saldo-=$this->precio;
+      $this->saldo-=$this->precio;
+      return TRUE;
     }
 
     public function descuentoViajesPlus(){

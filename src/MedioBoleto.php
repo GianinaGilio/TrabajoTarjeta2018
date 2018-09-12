@@ -4,35 +4,44 @@ namespace TrabajoTarjeta;
 class MedioBoleto extends Tarjeta {
 	public $precio=7.40;
 	protected $universitario = false;
+	protected $ultimopago;
 
-	public function descuentoSaldo() {
-//Falta poner el tiempo
-			return $this->saldo-=$this->precio;
+	public function descuentoSaldo(TiempoInterface $tiempo) {
+			if((($tiempo->time())-($this->ultimopago)) < 300)
+			{
+				return FALSE;
+			}
+			$this->ultimopago = $tiempo->time();
+			$this->saldo-=$this->precio;
+			return TRUE;
 	}
 
 }
 
 class MedioBoletoUni extends MedioBoleto {
+	public $precio=7.40;
 	protected $universitario= true;
 	protected  $vecesUsado= 0;
+	protected $ultimopago=0;
 
 
-
-	public function obtenerCantUsado(){
-		return $this->vecesUsado;
-	}
-//Falta poner el tiempo
-	public function descuentoSaldo() {
-
+	public function descuentoSaldo(TiempoInterface $tiempo) {
+	
 	if($this->vecesUsado == 2)
 	{
-		return $this->saldo-=($this->precio*2);
+	 $this->saldo-=($this->precio*2);
+	 	return TRUE;
 	}
 	else{
+		if((($tiempo->time())-($this->ultimopago)) < 300)
+			{
+				return FALSE;
+			}
+		$this->ultimopago = $tiempo->time();
 		$this->vecesUsado += 1;
-		return $this->saldo-=$this->precio;
+		$this->saldo-=$this->precio;
+		return TRUE;
 	}
-		
 	  }
 
 }

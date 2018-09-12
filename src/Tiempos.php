@@ -10,7 +10,7 @@ class Tiempo implements TiempoInterface{
 
 }
 
-class TiempoFalse implements TiempoInterface{
+class TiempoFalso implements TiempoInterface{
     protected $tiempo;
 
     public function __construct($iniciarEn = 0){
@@ -21,7 +21,7 @@ class TiempoFalse implements TiempoInterface{
         $this->tiempo += $segundos;
     }
 
-    public function timefalso(){
+    public function time(){
         return $this->tiempo;
     }
 
