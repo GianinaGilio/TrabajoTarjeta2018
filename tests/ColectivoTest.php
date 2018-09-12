@@ -33,4 +33,15 @@ class ColectivoTest extends TestCase {
       $this->assertFalse($colectivo->pagarCon($tarjeta));
     }
 
+    /**
+     * Comprueba que se muestren correctamente las caracteristicas del colectivo.
+     */    
+    public function testMostrarCaracteristicas(){
+        $colectivo = new Colectivo(144,"RosarioBus",5); 
+
+        $this->assertEquals($colectivo->linea(),144);
+        $this->assertEquals($colectivo->empresa(),"RosarioBus");
+        $this->assertEquals($colectivo->numero(),5);
+    }
+
 }
