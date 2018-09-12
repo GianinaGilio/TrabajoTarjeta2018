@@ -10,7 +10,7 @@ class ColectivoTest extends TestCase {
      * Comprueba que se puede pagar con la tarjeta si tiene saldo.
      */
     public function testpagarConSaldo() {
-       $colectivo = new Colectivo(144,"RosarioBus",3); 
+       $colectivo = new Colectivo; 
         $tarjeta = new Tarjeta();
 
         $this->assertTrue($tarjeta->recargar(20));
@@ -22,7 +22,7 @@ class ColectivoTest extends TestCase {
      * Comprueba que se puede pagar con la tarjeta si no tiene saldo y que no puede si no tiene viajes plus.
      */
     public function testpagarSinSaldo() {
-       $colectivo = new Colectivo(144,"RosarioBus",5); 
+       $colectivo = new Colectivo; 
         $tarjeta = new Tarjeta();
         
       $this->assertEquals($tarjeta->obtenerCantidadPlus(),2);
@@ -37,7 +37,10 @@ class ColectivoTest extends TestCase {
      * Comprueba que se muestren correctamente las caracteristicas del colectivo.
      */    
     public function testMostrarCaracteristicas(){
-        $colectivo = new Colectivo(144,"RosarioBus",5); 
+        $linea= 144;
+        $empresa= "RosarioBus";
+        $numero= 5;
+        $colectivo = new Colectivo($linea,$empresa,$numero); 
 
         $this->assertEquals($colectivo->linea(),144);
         $this->assertEquals($colectivo->empresa(),"RosarioBus");

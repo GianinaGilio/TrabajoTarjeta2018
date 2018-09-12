@@ -11,7 +11,6 @@ class Colectivo implements ColectivoInterface{
         $this->lin = $lin;
 		$this->emp = $emp;
 		$this->num = $num;
-    
     }
 
     public function linea(){
