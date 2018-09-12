@@ -20,7 +20,7 @@ class MedioBoletoTest extends TestCase {
     $this->assertEquals($tarjeta->obtenerSaldo(),22.6);
 
     //Para ver que no puede volver a pagar con medio antes de los 5 minutos.
-    $this->assertEquals($tiempo->timefalso(), 0);
+    $this->assertEquals($tiempo->time(), 0);
     $this->assertFalse($tarjeta->descuentoSaldo($tiempo));
 
 
