@@ -21,7 +21,7 @@ class MedioBoletoTest extends TestCase {
 
     //Para ver que no puede volver a pagar con medio antes de los 5 minutos.
     $this->assertEquals($tiempo->timefalso(), 0);
-    $this->assertFalse($colectivo->pagarCon($tarjeta));
+    $this->assertFalse($tarjeta->descuentoSaldo($tiempo));
 
 
 
@@ -45,7 +45,7 @@ class MedioBoletoTest extends TestCase {
 
     //Aca debería cobrarse el boleto normal
     $tiempo->avanzar(800);
-    $this->assertTrue($colectivo->pagarCon($tarjeta));
+    $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
     $this->assertEquals($tarjeta->obtenerSaldo(),0.4);
 
     //Para ver que no puede volver a pagar con medio antes de los 5 minutos.
