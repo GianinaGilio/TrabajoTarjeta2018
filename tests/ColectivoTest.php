@@ -37,12 +37,9 @@ class ColectivoTest extends TestCase {
      * Comprueba que se muestren correctamente las caracteristicas del colectivo.
      */    
     public function testMostrarCaracteristicas(){
-        $linea= 144;
-        $empresa= "RosarioBus";
-        $numero= 5;
-        $colectivo = new Colectivo($linea,$empresa,$numero); 
+        $colectivo = new Colectivo(144,"RosarioBus",5); 
 
-        $this->assertEquals($colectivo->linea(),144);
+       
         $this->assertEquals($colectivo->empresa(),"RosarioBus");
         $this->assertEquals($colectivo->numero(),5);
     }
