@@ -59,7 +59,7 @@ class MedioBoletoUni extends MedioBoleto {
 		}
 	  }
 
-	  public function obtenercantUsados(TiempoInterface $tiempo){
+	  public function obtenercantUsados(){
 		return $this->vecesUsado;
 	  }
 
