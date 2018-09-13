@@ -23,6 +23,7 @@ class MedioBoletoUni extends MedioBoleto {
 	protected $universitario= true;
 	protected  $vecesUsado= 0;
 	protected $ultimopago=0;
+	protected $ultimomedio;
 
 
 	public function descuentoSaldo(TiempoInterface $tiempo) {
@@ -40,8 +41,23 @@ class MedioBoletoUni extends MedioBoleto {
 		$this->ultimopago = $tiempo->time();
 		$this->vecesUsado += 1;
 		$this->saldo-=$this->precio;
+		if($this->vecesUsado==2)
+		{
+			$this->ultimomedio=$tiempo;
+		}
+		
 		return TRUE;
 	}
 	  }
+
+	  //Reinicia el medio boleto universitario para usarlo, cada 24 hs
+	  public function reiniciarMedio(TiempoInterface $tiempo){
+		if(($tiempo-($this->ultimomedio))>86400)
+		{
+			$this->vecesUsado=0;
+		}
+	  }
+
+	  
 
 }

@@ -34,7 +34,7 @@ class MedioBoletoTest extends TestCase {
     $tiempo=new TiempoFalso;
     
     //Pago de medio boleto universitario
-    $tarjeta->recargar(30);
+    $tarjeta->recargar(100);
     $tiempo->avanzar(350);
     $this->assertEquals($tiempo->time(), 350);
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
@@ -51,9 +51,8 @@ class MedioBoletoTest extends TestCase {
     $this->assertEquals($tarjeta->obtenerSaldo(),0.4);
 
     //Para ver que no puede volver a pagar con medio antes de los 5 minutos.
-    $tarjeta->recargar(30);
-    $tiempo->avanzar(50);
-    $this->assertEquals($tiempo->time(), 1000);
+    $tiempo->avanzar(0);
+    $this->assertEquals($tiempo->time(), 950);
     $this->assertFalse($tarjeta->descuentoSaldo($tiempo));
   }
 }
