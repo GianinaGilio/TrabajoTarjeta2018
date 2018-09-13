@@ -38,17 +38,17 @@ class MedioBoletoTest extends TestCase {
     $tiempo->avanzar(350);
     $this->assertEquals($tiempo->time(), 350);
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
-    $this->assertEquals($tarjeta->obtenerSaldo(),22.6);
+    $this->assertEquals($tarjeta->obtenerSaldo(),92.6);
     $tiempo->avanzar(300);
     $this->assertEquals($tiempo->time(),650);
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
-    $this->assertEquals($tarjeta->obtenerSaldo(),15.2);
+    $this->assertEquals($tarjeta->obtenerSaldo(),85.2);
 
     //Aca debería cobrarse el boleto normal
     $tiempo->avanzar(300);
     $this->assertEquals($tiempo->time(), 950);
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
-    $this->assertEquals($tarjeta->obtenerSaldo(),0.4);
+    $this->assertEquals($tarjeta->obtenerSaldo(),70.4);
 
     //Para ver que no puede volver a pagar con medio antes de los 5 minutos.
     $tiempo->avanzar(0);
