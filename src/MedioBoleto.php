@@ -43,7 +43,7 @@ class MedioBoletoUni extends MedioBoleto {
 		$this->saldo-=$this->precio;
 		if($this->vecesUsado==2)
 		{
-			$this->ultimomedio=$tiempo;
+			$this->ultimomedio=$tiempo->time();
 		}
 		
 		return TRUE;
@@ -52,7 +52,7 @@ class MedioBoletoUni extends MedioBoleto {
 
 	  //Reinicia el medio boleto universitario para usarlo, cada 24 hs
 	  public function reiniciarMedio(TiempoInterface $tiempo){
-		if(($tiempo-($this->ultimomedio))>86400)
+		if(($tiempo->time()-($this->ultimomedio))>86400)
 		{
 			$this->vecesUsado=0;
 			return TRUE;
