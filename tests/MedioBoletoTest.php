@@ -40,7 +40,7 @@ class MedioBoletoTest extends TestCase {
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
     $this->assertEquals($tarjeta->obtenerSaldo(),22.6);
     $tiempo->avanzar(300);
-    $this->assertTrue($tiempo->time(),650);
+    $this->assertEquals($tiempo->time(),650);
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
     $this->assertEquals($tarjeta->obtenerSaldo(),15.2);
 
