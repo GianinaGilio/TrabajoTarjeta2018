@@ -52,7 +52,7 @@ class Tarjeta implements TarjetaInterface {
       return $this->saldo;
     }
     // Descuenta saldo
-    public function descuentoSaldo() {
+    public function descuentoSaldo(TiempoInterface $tiempo) {
       $this->saldo-=$this->precio;
       return TRUE;
     }

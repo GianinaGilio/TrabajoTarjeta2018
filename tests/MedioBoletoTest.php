@@ -32,6 +32,7 @@ class MedioBoletoTest extends TestCase {
     
     //Pago de medio boleto universitario
     $tarjeta->recargar(30);
+    $this->assertEquals($tiempo->avanzar(1), 1);
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
     $this->assertEquals($tarjeta->obtenerSaldo(),22.6);
     $this->assertTrue($tiempo->avanzar(400));

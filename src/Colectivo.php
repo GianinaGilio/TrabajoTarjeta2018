@@ -26,13 +26,14 @@ class Colectivo implements ColectivoInterface{
     }
 
     public function pagarCon(TarjetaInterface $tarjeta){
+         $tiempo= new Tiempo();
         if($tarjeta->precio != 0 && $tarjeta->obtenerSaldo() < 14.80)
         {
             return $tarjeta->descuentoViajesPlus();
         }
         else
         {
-            $tarjeta->descuentoSaldo();
+            $tarjeta->descuentoSaldo($tiempo);
             return $tarjeta->obtenerSaldo(); 
         }
     }
