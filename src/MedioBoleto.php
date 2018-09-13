@@ -7,7 +7,7 @@ class MedioBoleto extends Tarjeta {
 	protected $ultimopago;
 
 	public function descuentoSaldo(TiempoInterface $tiempo) {
-			if((($tiempo->time())-($this->ultimopago)) < 300)
+			if((($tiempo->time())-($this->ultimopago)) < 300 )
 			{
 				return FALSE;
 			}
