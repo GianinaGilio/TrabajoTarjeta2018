@@ -7,11 +7,10 @@ class Colectivo implements ColectivoInterface{
 	public $emp;
 	public $num;
 
-	public function _construct($lin, $emp, $num) {
+	public function __construct($lin, $emp, $num) {
         $this->lin = $lin;
 		$this->emp = $emp;
 		$this->num = $num;
-    
     }
 
     public function linea(){
@@ -27,13 +26,14 @@ class Colectivo implements ColectivoInterface{
     }
 
     public function pagarCon(TarjetaInterface $tarjeta){
+         $tiempo= new Tiempo();
         if($tarjeta->precio != 0 && $tarjeta->obtenerSaldo() < 14.80)
         {
             return $tarjeta->descuentoViajesPlus();
         }
         else
         {
-            $tarjeta->descuentoSaldo();
+            $tarjeta->descuentoSaldo($tiempo);
             return $tarjeta->obtenerSaldo(); 
         }
     }
