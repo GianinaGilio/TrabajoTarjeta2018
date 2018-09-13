@@ -44,7 +44,7 @@ class MedioBoletoTest extends TestCase {
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
     $this->assertEquals($tarjeta->obtenerSaldo(),85.2);
 
-    //Aca debería cobrarse el boleto normal
+    //Aca debería cobrarse el boleto normal, despues de pagar dos veces medio boleto
     $tiempo->avanzar(300);
     $this->assertEquals($tiempo->time(), 950);
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
@@ -60,10 +60,10 @@ class MedioBoletoTest extends TestCase {
     $tarjeta=new MedioBoletoUni;
     $tiempo=new TiempoFalso;
 
-    $tiempo->avanzar(0);
-    $this->assertEquals($tiempo->time(), 950);
+    $tiempo->avanzar(400);
+    $this->assertEquals($tiempo->time(), 400);
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
-    $this->assertEquals($tiempo->time(), 950);
+    $this->assertEquals($tiempo->time(), 400);
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
   }
 }
