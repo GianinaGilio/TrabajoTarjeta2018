@@ -3,10 +3,6 @@ namespace TrabajoTarjeta;
 
 class MedioBoleto extends Tarjeta {
 	public $precio=7.40;
-<<<<<<< HEAD
-}
-
-=======
 	protected $universitario = false;
 	protected $ultimopago;
 
@@ -72,4 +68,3 @@ class MedioBoletoUni extends MedioBoleto {
 	  }
 
 }
->>>>>>> master

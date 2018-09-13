@@ -1,22 +1,16 @@
 <?php
 namespace TrabajoTarjeta;
 class Tarjeta implements TarjetaInterface {
-<<<<<<< HEAD
   protected $id;
-=======
->>>>>>> master
   protected $saldo=0;
   public $bandera=0;
   protected $plus=2;
   public $precio=14.80;
-<<<<<<< HEAD
   
 	public function _construct($id){
 	$this->id =$id;
 	}
 	
-=======
->>>>>>> master
     public function recargar($monto) {
       // Montos aceptados:10, 20, 30, 50, 100, 510.15 y 962.59
       if ($monto == 10 || $monto == 20 || $monto == 30 || $monto == 50 || $monto == 100 || $monto == 510.15 || $monto == 962.59) {
@@ -63,20 +57,12 @@ class Tarjeta implements TarjetaInterface {
     public function obtenerSaldo() {
       return $this->saldo;
     }
-<<<<<<< HEAD
-
-    public function descuentoSaldo() {
-      return $this->saldo-=$this->precio;
-    }
-
-=======
     // Descuenta saldo
     public function descuentoSaldo(TiempoInterface $tiempo) {
       $this->saldo-=$this->precio;
       return TRUE;
     }
 // Descuenta plus
->>>>>>> master
     public function descuentoViajesPlus(){
       if($this->plus>0)
       {
@@ -89,11 +75,7 @@ class Tarjeta implements TarjetaInterface {
       }
 
     }
-<<<<<<< HEAD
-
-=======
 // muestra cantidad plus
->>>>>>> master
     public function obtenerCantidadPlus(){
       return $this->plus;
     }
