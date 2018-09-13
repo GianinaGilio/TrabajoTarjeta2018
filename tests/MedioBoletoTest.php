@@ -53,9 +53,11 @@ class MedioBoletoTest extends TestCase {
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
     $this->assertEquals($tarjeta->obtenerSaldo(),70.4);
     
+    //Verifica que no se puede reiniciar la cantidad de medios para gastar antes de las 24 hs
+    $this->assertFalse($tarjeta->reiniciarMedio($tiempo));
     //Verifica si se reinicia la cantidad de veces que se uso el medio
     $tiempo->avanzar(86400);
-    $this->assertTrue($tarjeta->reiniciarMedio());
+    $this->assertTrue($tarjeta->reiniciarMedio($tiempo));
     $this->assertEquals($tarjeta->obtenercantUsados(),0);
     
   }

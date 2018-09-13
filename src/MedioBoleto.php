@@ -57,6 +57,10 @@ class MedioBoletoUni extends MedioBoleto {
 			$this->vecesUsado=0;
 			return TRUE;
 		}
+		else
+		{
+			return FALSE;
+		}
 	  }
 
 	  public function obtenercantUsados(){
