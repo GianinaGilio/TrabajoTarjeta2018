@@ -10,8 +10,9 @@ class MedioBoletoTest extends TestCase {
      */
 
   public function testMedioBoleto()
-  { $colectivo= new Colectivo;
-    $tarjeta=new Tarjeta;
+  { 
+    $colectivo= new Colectivo;
+    $tarjeta3=new Tarjeta;
     /**
      * Hay que hacerlo.
      */
