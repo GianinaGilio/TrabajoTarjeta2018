@@ -55,9 +55,12 @@ class MedioBoletoUni extends MedioBoleto {
 		if(($tiempo-($this->ultimomedio))>86400)
 		{
 			$this->vecesUsado=0;
+			return TRUE;
 		}
 	  }
 
-	  
+	  public function obtenercantUsados(TiempoInterface $tiempo){
+		return $this->vecesUsado;
+	  }
 
 }

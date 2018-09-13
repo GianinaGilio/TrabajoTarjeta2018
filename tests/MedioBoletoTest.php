@@ -36,12 +36,15 @@ class MedioBoletoTest extends TestCase {
     //Pago de medio boleto universitario
     $tarjeta->recargar(100);
     $tiempo->avanzar(350);
+    $this->assertEquals($tarjeta->obtenercantUsados(),0);
     $this->assertEquals($tiempo->time(), 350);
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
+    $this->assertEquals($tarjeta->obtenercantUsados(),1);
     $this->assertEquals($tarjeta->obtenerSaldo(),92.6);
     $tiempo->avanzar(300);
     $this->assertEquals($tiempo->time(),650);
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
+    $this->assertEquals($tarjeta->obtenercantUsados(),2);
     $this->assertEquals($tarjeta->obtenerSaldo(),85.2);
 
     //Aca debería cobrarse el boleto normal, despues de pagar dos veces medio boleto
@@ -49,21 +52,25 @@ class MedioBoletoTest extends TestCase {
     $this->assertEquals($tiempo->time(), 950);
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
     $this->assertEquals($tarjeta->obtenerSaldo(),70.4);
-
     
+    //Verifica si se reinicia la cantidad de veces que se uso el medio
+    $tiempo->avanzar(86400);
+    $this->assertTrue($tarjeta->reiniciarMedio());
+    $this->assertEquals($tarjeta->obtenercantUsados(),0);
     
   }
 
   //Para ver que no puede volver a pagar con medio antes de los 5 minutos.
   public function testPagarConMedioUni_False(){
-    $colectivo = new Colectivo(144,"RosarioBus",5);
     $tarjeta=new MedioBoletoUni;
     $tiempo=new TiempoFalso;
 
     $tiempo->avanzar(400);
+    $tarjeta->recargar(100);
     $this->assertEquals($tiempo->time(), 400);
     $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
     $this->assertEquals($tiempo->time(), 400);
-    $this->assertTrue($tarjeta->descuentoSaldo($tiempo));
+    $this->assertFalse($tarjeta->descuentoSaldo($tiempo));
   }
+
 }
