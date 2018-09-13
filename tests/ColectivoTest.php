@@ -39,7 +39,7 @@ class ColectivoTest extends TestCase {
     public function testMostrarCaracteristicas(){
         $colectivo = new Colectivo(144,"RosarioBus",5); 
 
-       
+        $this->assertEquals($colectivo->linea(),"RosarioBus");
         $this->assertEquals($colectivo->empresa(),"RosarioBus");
         $this->assertEquals($colectivo->numero(),5);
     }
