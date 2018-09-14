@@ -15,7 +15,8 @@ class ColectivoTest extends TestCase {
 
         $this->assertTrue($tarjeta->recargar(20));
         $colectivo->pagarCon($tarjeta);
-        $this->assertTrue($tarjeta->obtenerSaldo()==5.20 && $tarjeta->obtenerCantidadPlus()==2);
+        $this->assertTrue($tarjeta->obtenerSaldo()==5.20);
+        $this->assertTrue($tarjeta->obtenerCantidadPlus()==2);
        
     }
 
