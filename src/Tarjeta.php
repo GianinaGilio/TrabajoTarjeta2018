@@ -8,7 +8,7 @@ class Tarjeta implements TarjetaInterface {
   public $precio=14.80;
   
 	public function _construct($id){
-	$this->id =$id;
+	  $this->id =$id;
 	}
 	
     public function recargar($monto) {
@@ -64,7 +64,7 @@ class Tarjeta implements TarjetaInterface {
     }
 // Devuelve la ID de la tarjeta.
     public function obtenerID(){
-      return $this->$id;
+      return $this->id;
     }
 // Descuenta plus
     public function descuentoViajesPlus(){
