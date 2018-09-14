@@ -16,7 +16,7 @@ class Boleto implements BoletoInterface {
     protected $saldo;
     protected $linea_colectivo;
 
-    public function __construct($valor, $colectivo, $tarjeta) {
+    public function __construct($valor, ColectiviInterface $colectivo, TarjetaInterface $tarjeta) {
         $this->valor = $valor;
 		$this->linea_colectivo = $colectivo->linea();
 		$this->idTarjeta = $tarjeta->obtenerID();
