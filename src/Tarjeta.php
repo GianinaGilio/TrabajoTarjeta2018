@@ -62,6 +62,10 @@ class Tarjeta implements TarjetaInterface {
       $this->saldo-=$this->precio;
       return TRUE;
     }
+// Devuelve la ID de la tarjeta.
+    public function obtenerID(){
+      return $this->$id;
+    }
 // Descuenta plus
     public function descuentoViajesPlus(){
       if($this->plus>0)
