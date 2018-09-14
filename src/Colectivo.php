@@ -3,9 +3,9 @@
 namespace TrabajoTarjeta;
 
 class Colectivo implements ColectivoInterface{
-	public $lin;
-	public $emp;
-	public $num;
+	protected $lin;
+	protected $emp;
+	protected $num;
 
 	public function __construct($lin, $emp, $num) {
         $this->lin = $lin;
