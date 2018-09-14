@@ -36,9 +36,9 @@ class Boleto implements BoletoInterface {
      * Devuelve un objeto que respresenta el colectivo donde se viajó.
      *
      * @return ColectivoInterface
-     */
+     
     public function obtenerColectivo() {
 
-    }
+    }*/
 
 }
