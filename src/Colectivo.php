@@ -36,7 +36,7 @@ class Colectivo implements ColectivoInterface{
 			$colectivo = new Colectivo(144,"RosarioBus",23);
             $tarjeta->descuentoSaldo($tiempo);
             $saldoActual = $tarjeta->obtenerSaldo(); 
-			$boleto = new Boleto ($tarjeta->precio,$colectivo,$tarjeta);
+			$boleto = new Boleto ($tarjeta->precio,$colectivo,$tarjeta,$tiempo);
 			return $boleto;
         }
     }

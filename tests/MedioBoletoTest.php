@@ -11,7 +11,7 @@ class MedioBoletoTest extends TestCase {
 
   public function testPagarConMedio()
   { $colectivo = new Colectivo(144,"RosarioBus",5);
-    $tarjeta=new MedioBoleto;
+    $tarjeta=new MedioBoleto(2345);
     $tiempo=new TiempoFalso;
     
     //Pago de un medio
@@ -30,7 +30,7 @@ class MedioBoletoTest extends TestCase {
 
   public function testPagarConMedioUni()
   { $colectivo = new Colectivo(144,"RosarioBus",5);
-    $tarjeta=new MedioBoletoUni;
+    $tarjeta=new MedioBoletoUni(2345);
     $tiempo=new TiempoFalso;
     
     //Pago de medio boleto universitario
@@ -64,7 +64,7 @@ class MedioBoletoTest extends TestCase {
 
   //Para ver que no puede volver a pagar con medio antes de los 5 minutos.
   public function testPagarConMedioUni_False(){
-    $tarjeta1=new MedioBoletoUni;
+    $tarjeta1=new MedioBoletoUni(2345);
     $tiempo=new TiempoFalso;
 
     $tiempo->avanzar(400);

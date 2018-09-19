@@ -7,8 +7,8 @@ class Tarjeta implements TarjetaInterface {
   protected $plus=2;
   public $precio=14.80;
   
-	public function _construct($id){
-	  $this->id =$id;
+	public function __construct($id){
+	  $this->id = $id;
 	}
 	
     public function recargar($monto) {

@@ -10,7 +10,7 @@ class FranquiciaCompletaTest extends TestCase {
      */
   public function testFranquiciaCompleta()
   { $colectivo = new Colectivo(144,"RosarioBus",5);
-    $tarjeta=new Tarjeta;
+    $tarjeta=new Tarjeta(2345);
     /**
      * Hay que hacerlo.
      */

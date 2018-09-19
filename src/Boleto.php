@@ -8,19 +8,22 @@ class Boleto implements BoletoInterface {
 	*  $valor -> total abonado.
 	* $linea_colectivo -> linea del colectivo que creo el boleto.
 	* $tipoTarjeta -> si es mediaFranquicia, FranquicaCompleta o normal
-	* $saldo -> saldo actual de la tarjeta.
+    * $saldo -> saldo actual de la tarjeta.
+    
 	*/
 	
 	protected $idTarjeta;
     protected $valor;
     protected $saldo;
     protected $linea_colectivo;
+    protected $fecha;
 
-    public function __construct($valor, ColectivoInterface $colectivo, TarjetaInterface $tarjeta) {
+    public function __construct($valor, ColectivoInterface $colectivo, TarjetaInterface $tarjeta, TiempoInterface $tiempo) {
         $this->valor = $valor;
 		$this->linea_colectivo = $colectivo->linea();
 		$this->idTarjeta = $tarjeta->obtenerID();
-		$this->saldo = $tarjeta->obtenerSaldo();
+        $this->saldo = $tarjeta->obtenerSaldo();
+        $this->fecha= date("D/m/Y H:i:s", $tiempo->time());
     }
 
     /**
@@ -37,8 +40,20 @@ class Boleto implements BoletoInterface {
      *
      * @return ColectivoInterface
      */
-    public function obtenerColectivo() {
+    public function obtenerLinea() {
+        return $this->linea_colectivo;
+    }
 
+    public function obtenerID() {
+        return $this->idTarjeta;
+    }
+
+    public function obtenerSaldo() {
+        return $this->saldo;
+    }
+
+    public function obtenerFecha() {
+        return $this->fecha;
     }
 
 }
