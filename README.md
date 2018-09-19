@@ -87,7 +87,7 @@ Al igual que la iteración anterior, se pide mantener la mecánica de trabajo pa
 
 En esta iteración daremos una introducción a la manipulación de fechas y horarios. Éstos serán necesarios en esta oportunidad para realizar las modificaciones pedidas. Consultar este video para conocer más sobre el manejo de fechas y horas en PHP: https://www.youtube.com/watch?v=dVRl1kqxdwY
 
-## Más datos sobre el boleto.
+### Más datos sobre el boleto.
 - La clase boleto tendrá nuevos métodos que permitan conocer: (Fecha, tipo de tarjeta, línea de colectivo, total abonado, saldo e ID de la tarjeta. Recordar que el tipo de boleto (Normal, Viaje Plus) de los boletos indican si se hizo un viaje plus o no
 
 - Además el boleto tiene una descripcion extra indicando si se canceló viaje plus con el pago de este boleto (Ejemplo: Abona viajes plus 29.63 y).
@@ -96,7 +96,7 @@ En esta iteración daremos una introducción a la manipulación de fechas y hora
 
 - Escribir los tests correspondientes a los posibles tipos de boletos a obtener según el tipo de tarjeta.
 
-## Limitación en el pago de medio boletos
+### Limitación en el pago de medio boletos
 Para evitar el uso de una tarjeta de tipo medio boleto en más de una persona en el mismo viaje se pide que:
 
 - Al utilizar una tarjeta de tipo medio boleto para viajar, deban pasar como mínimo 5 minutos antes de realizar otro viaje. No será posible pagar otro viaje antes de que pasen estos 5 minutos.
