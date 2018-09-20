@@ -52,7 +52,6 @@ class MedioBoletoUni extends MedioBoleto {
 
 	  //Reinicia el medio boleto universitario para usarlo, cada 24 hs
 	  public function reiniciarMedio($tiempo){
-		date_default_timezone_set('America/Argentina/Buenos_Aires');
 		$tiempo2=$tiempo->time();
 		$hora=date('H', $tiempo2);
 		$minutos=date('i',$tiempo2);
