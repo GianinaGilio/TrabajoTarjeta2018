@@ -32,6 +32,7 @@ class MedioBoletoTest extends TestCase {
   { $colectivo = new Colectivo(144,"RosarioBus",5);
     $tarjeta=new MedioBoletoUni(2345);
     $tiempo=new TiempoFalso;
+    $tiempo2=new TiempoFalso(0);
     
     //Pago de medio boleto universitario
     $tarjeta->recargar(100);
@@ -56,8 +57,9 @@ class MedioBoletoTest extends TestCase {
     //Verifica que no se puede reiniciar la cantidad de medios para gastar antes de las 24 hs
     $this->assertFalse($tarjeta->reiniciarMedio($tiempo));
     //Verifica si se reinicia la cantidad de veces que se uso el medio
-    $tiempo->avanzar(86400);
-    $this->assertTrue($tarjeta->reiniciarMedio($tiempo));
+    $tiempo2->avanzar(0);
+    $this->assertTrue(strcmp(date('H',$tiempo2->time()),"01")==0);
+    $this->assertTrue($tarjeta->reiniciarMedio($tiempo2));
     $this->assertEquals($tarjeta->obtenercantUsados(),0);
     
   }

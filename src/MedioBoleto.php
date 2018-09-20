@@ -52,7 +52,13 @@ class MedioBoletoUni extends MedioBoleto {
 
 	  //Reinicia el medio boleto universitario para usarlo, cada 24 hs
 	  public function reiniciarMedio(TiempoInterface $tiempo){
-		if(($tiempo->time()-($this->ultimomedio))>86400)
+		$tiempo2=$tiempo->time();
+		$hora=date('H', $tiempo2);
+		$minutos=date('i',$tiempo2);
+		$segundos=date('s',$tiempo2);
+
+		//if(($tiempo->time()-($this->ultimomedio))>86400)
+		if($hora=='00' && $minutos=='00' && $segundos=='00')
 		{
 			$this->vecesUsado=0;
 			return TRUE;
