@@ -7,7 +7,8 @@ class MedioBoleto extends Tarjeta {
 	protected $ultimopago;
 	protected $cantTransb=1;
   	public $banderaTransb;
- 	protected $lineaUltColectivo;
+	protected $lineaUltColectivo;
+
 
 	public function descuentoSaldo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
 			if((($tiempo->time())-($this->ultimopago)) < 300 )
@@ -100,12 +101,14 @@ class MedioBoleto extends Tarjeta {
 
 class MedioBoletoUni extends MedioBoleto {
 	protected $precio=7.40;
-	protected $precioNormal=$this->precio*2;
+	protected $precioNormal=14.80;
 	protected $universitario= true;
 	protected $vecesUsado= 0;
 	protected $ultimopago=0;
 	protected $ultimomedio;
-
+	protected $cantTransb=1;
+	public $banderaTransb;
+	protected $lineaUltColectivo;
 
 	public function descuentoSaldo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
 		$dia=date("D", $tiempo->time());
