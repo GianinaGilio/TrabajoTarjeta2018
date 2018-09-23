@@ -100,9 +100,9 @@ class MedioBoleto extends Tarjeta {
 
 class MedioBoletoUni extends MedioBoleto {
 	protected $precio=7.40;
-	protected $precioNormal=$precio*2;
+	protected $precioNormal=$this->$precio*2;
 	protected $universitario= true;
-	protected  $vecesUsado= 0;
+	protected $vecesUsado= 0;
 	protected $ultimopago=0;
 	protected $ultimomedio;
 
