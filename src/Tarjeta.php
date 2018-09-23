@@ -3,10 +3,12 @@ namespace TrabajoTarjeta;
 class Tarjeta implements TarjetaInterface {
   protected $id;
   protected $saldo=0;
-  public $bandera=0;
   protected $plus=2;
   protected $precio=14.80;
-  protected $cantTransb=0;
+  protected $cantTransb=1;
+  public $banderaTransb;
+  protected $ultimopago;
+  protected $lineaUltColectivo;
   
 	public function __construct($id){
 	  $this->id = $id;
@@ -65,8 +67,84 @@ class Tarjeta implements TarjetaInterface {
       return $this->saldo;
     }
     // Descuenta saldo
-    public function descuentoSaldo(TiempoInterface $tiempo) {
+    public function descuentoSaldo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
+      $dia=date("D", $tiempo->time());
+      $hora=idate("H", $tiempo->time());
+      
+      if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTransb==0)
+      {
+        if($hora >= 6 && $hora <= 22)
+        {
+          if($dia == "Mon" || $dia == "Tue" || $dia == "Wed" || $dia == "Thu" || $dia == "Fri")
+          {
+            if(($tiempo->time())-($this->ultimopago) <= 3600)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->lineaUltColectivo = $colectivo->linea();
+              $this->saldo-= (33*$this->precio)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+          }
+          
+          if($dia == "Sun")
+          {
+            if(($tiempo->time())-($this->ultimopago) <= 5400)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->saldo-= (33*$this->precio)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+          }
+          
+        }
+  
+        if($dia=="Sat")
+        {
+          if($hora >= 6 && $hora <= 14)
+          {
+            if(($tiempo->time())-($this->ultimopago) <= 3600)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->saldo-= (33*$this->precio)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+          }
+  
+          if($hora >= 14 && $hora <= 22){
+            if(($tiempo->time())-($this->ultimopago) <= 5400)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->saldo-= (33*$this->precio)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+          }
+        }
+  
+        if($hora > 22 || $hora < 6){
+          if(($tiempo->time())-($this->ultimopago) <= 5400)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->saldo-= (33*$this->precio)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+        }
+      }
+      
+      $this->lineaUltColectivo = $colectivo->linea();
+      $this->ultimopago = $tiempo->time();
       $this->saldo-=$this->precio;
+      $this->banderaTransb=FALSE;
+      $this->cantTransb=0;
       return TRUE;
     }
 // Devuelve la ID de la tarjeta.

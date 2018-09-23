@@ -5,14 +5,94 @@ class MedioBoleto extends Tarjeta {
 	protected $precio=7.40;
 	protected $universitario = false;
 	protected $ultimopago;
+	protected $cantTransb=1;
+  	public $banderaTransb;
+ 	protected $lineaUltColectivo;
 
-	public function descuentoSaldo(TiempoInterface $tiempo) {
+	public function descuentoSaldo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
 			if((($tiempo->time())-($this->ultimopago)) < 300 )
 			{
 				return FALSE;
 			}
+
+		$dia=date("D", $tiempo->time());
+    	$hora=idate("H", $tiempo->time());
+	  
+		//TRANSBORDO
+      if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTransb==0)
+      {
+        if($hora >= 6 && $hora <= 22)
+        {
+          if($dia == "Mon" || $dia == "Tue" || $dia == "Wed" || $dia == "Thu" || $dia == "Fri")
+          {
+            if(($tiempo->time())-($this->ultimopago) <= 3600)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->lineaUltColectivo = $colectivo->linea();
+              $this->saldo-= (33*$this->precio)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+          }
+          
+          if($dia == "Sun")
+          {
+            if(($tiempo->time())-($this->ultimopago) <= 5400)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->saldo-= (33*$this->precio)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+          }
+          
+        }
+  
+        if($dia=="Sat")
+        {
+          if($hora >= 6 && $hora <= 14)
+          {
+            if(($tiempo->time())-($this->ultimopago) <= 3600)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->saldo-= (33*$this->precio)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+          }
+  
+          if($hora >= 14 && $hora <= 22){
+            if(($tiempo->time())-($this->ultimopago) <= 5400)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->saldo-= (33*$this->precio)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+          }
+        }
+  
+        if($hora > 22 || $hora < 6){
+          if(($tiempo->time())-($this->ultimopago) <= 5400)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->saldo-= (33*$this->precio)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+        }
+      }//FIN TRANSBORDO
+
 			$this->ultimopago = $tiempo->time();
 			$this->saldo-=$this->precio;
+			$this->lineaUltColectivo = $colectivo->linea();
+     		$this->banderaTransb=FALSE;
+     		$this->cantTransb=0;
 			return TRUE;
 	}
 
@@ -20,25 +100,179 @@ class MedioBoleto extends Tarjeta {
 
 class MedioBoletoUni extends MedioBoleto {
 	protected $precio=7.40;
+	protected $precioNormal=$precio*2;
 	protected $universitario= true;
 	protected  $vecesUsado= 0;
 	protected $ultimopago=0;
 	protected $ultimomedio;
 
 
-	public function descuentoSaldo(TiempoInterface $tiempo) {
-	
+	public function descuentoSaldo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
+		$dia=date("D", $tiempo->time());
+    	$hora=idate("H", $tiempo->time());
 	if($this->vecesUsado == 2)
 	{
-	 $this->saldo-=($this->precio*2);
-	 	return TRUE;
+		
+      //TRANSBORDO DE BOLETO NORMAL
+      if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTransb==0)
+      {
+        if($hora >= 6 && $hora <= 22)
+        {
+          if($dia == "Mon" || $dia == "Tue" || $dia == "Wed" || $dia == "Thu" || $dia == "Fri")
+          {
+            if(($tiempo->time())-($this->ultimopago) <= 3600)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->lineaUltColectivo = $colectivo->linea();
+              $this->saldo-= (33*$this->precioNormal)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+          }
+          
+          if($dia == "Sun")
+          {
+            if(($tiempo->time())-($this->ultimopago) <= 5400)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->saldo-= (33*$this->precioNormal)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+          }
+          
+        }
+  
+        if($dia=="Sat")
+        {
+          if($hora >= 6 && $hora <= 14)
+          {
+            if(($tiempo->time())-($this->ultimopago) <= 3600)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->saldo-= (33*$this->precioNormal)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+          }
+  
+          if($hora >= 14 && $hora <= 22){
+            if(($tiempo->time())-($this->ultimopago) <= 5400)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->saldo-= (33*$this->precioNormal)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+          }
+        }
+  
+        if($hora > 22 || $hora < 6){
+          if(($tiempo->time())-($this->ultimopago) <= 5400)
+            {
+              $this->ultimopago = $tiempo->time();
+              $this->saldo-= (33*$this->precioNormal)/100;
+              $this->banderaTransb=TRUE;
+              $this->cantTransb=1;
+              return TRUE;
+            }
+        }
+	  }//FIN TRANSBORDO DE BOLETO NORMAL
+	  
+
+	  $this->ultimopago = $tiempo->time();
+	  $this->saldo-=$this->precioNormal;
+	  $this->lineaUltColectivo = $colectivo->linea();
+	  $this->banderaTransb=FALSE;
+	  $this->cantTransb=0;
+		return TRUE;
 	}
 	else{
+		//Verifica que no se puede usar el medio boleto en menos de 5 minutos luego de haber realizado el pago de un medio
 		if((($tiempo->time())-($this->ultimopago)) < 300)
 			{
 				return FALSE;
 			}
+
+			//TRANSBORDO DE MEDIO BOLETO
+		  if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTransb==0)
+		  {
+			if($hora >= 6 && $hora <= 22)
+			{
+			  if($dia == "Mon" || $dia == "Tue" || $dia == "Wed" || $dia == "Thu" || $dia == "Fri")
+			  {
+				if(($tiempo->time())-($this->ultimopago) <= 3600)
+				{
+				  $this->ultimopago = $tiempo->time();
+				  $this->lineaUltColectivo = $colectivo->linea();
+				  $this->saldo-= (33*$this->precio)/100;
+				  $this->banderaTransb=TRUE;
+				  $this->cantTransb=1;
+				  return TRUE;
+				}
+			  }
+			  
+			  if($dia == "Sun")
+			  {
+				if(($tiempo->time())-($this->ultimopago) <= 5400)
+				{
+				  $this->ultimopago = $tiempo->time();
+				  $this->saldo-= (33*$this->precio)/100;
+				  $this->banderaTransb=TRUE;
+				  $this->cantTransb=1;
+				  return TRUE;
+				}
+			  }
+			  
+			}
+	  
+			if($dia=="Sat")
+			{
+			  if($hora >= 6 && $hora <= 14)
+			  {
+				if(($tiempo->time())-($this->ultimopago) <= 3600)
+				{
+				  $this->ultimopago = $tiempo->time();
+				  $this->saldo-= (33*$this->precio)/100;
+				  $this->banderaTransb=TRUE;
+				  $this->cantTransb=1;
+				  return TRUE;
+				}
+			  }
+	  
+			  if($hora >= 14 && $hora <= 22){
+				if(($tiempo->time())-($this->ultimopago) <= 5400)
+				{
+				  $this->ultimopago = $tiempo->time();
+				  $this->saldo-= (33*$this->precio)/100;
+				  $this->banderaTransb=TRUE;
+				  $this->cantTransb=1;
+				  return TRUE;
+				}
+			  }
+			}
+	  
+			if($hora > 22 || $hora < 6){
+			  if(($tiempo->time())-($this->ultimopago) <= 5400)
+				{
+				  $this->ultimopago = $tiempo->time();
+				  $this->saldo-= (33*$this->precio)/100;
+				  $this->banderaTransb=TRUE;
+				  $this->cantTransb=1;
+				  return TRUE;
+				}
+			}
+		  }//FIN TRANSBORDO DE MEDIO BOLETO
+
+
 		$this->ultimopago = $tiempo->time();
+		$this->lineaUltColectivo = $colectivo->linea();
+		$this->banderaTransb=FALSE;
+		$this->cantTransb=0;
 		$this->vecesUsado += 1;
 		$this->saldo-=$this->precio;
 		if($this->vecesUsado==2)
