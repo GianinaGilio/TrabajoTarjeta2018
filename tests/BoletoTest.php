@@ -9,7 +9,7 @@ class BoletoTest extends TestCase {
     public function testSaldoCero() {
         $valor = 14.80;
 		$tarjeta= new Tarjeta(2345);
-        $colectivo= new Colectivo(144,"RosarioBus",7);
+        $colectivo= new Colectivo(144, "N", "RosarioBus",5);
         $tiempo= new TiempoFalso;
         $tiempo->avanzar(1535563521);
         $fecha= date("D/m/Y H:i:s", $tiempo->time());

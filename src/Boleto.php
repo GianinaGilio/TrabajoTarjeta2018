@@ -9,7 +9,7 @@ class Boleto implements BoletoInterface {
 	* $linea_colectivo -> linea del colectivo que creo el boleto.
 	* $tipoTarjeta -> si es mediaFranquicia, FranquicaCompleta o normal
     * $saldo -> saldo actual de la tarjeta.
-    
+    * $fecha -> fecha del momento en que se efectua el pago
 	*/
 	
 	protected $idTarjeta;

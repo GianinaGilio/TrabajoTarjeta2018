@@ -10,7 +10,7 @@ class MedioBoletoTest extends TestCase {
      */
 
   public function testPagarConMedio()
-  { $colectivo = new Colectivo(144,"RosarioBus",5);
+  { $colectivo = new Colectivo(144, "N", "RosarioBus",5);
     $tarjeta=new MedioBoleto(2345);
     $tiempo=new TiempoFalso;
     
@@ -29,7 +29,7 @@ class MedioBoletoTest extends TestCase {
 
 
   public function testPagarConMedioUni()
-  { $colectivo = new Colectivo(144,"RosarioBus",5);
+  { $colectivo = new Colectivo(144, "N", "RosarioBus",5);
     $tarjeta=new MedioBoletoUni(2345);
     $tiempo=new TiempoFalso;
     $tiempo2=new TiempoFalso(0);
