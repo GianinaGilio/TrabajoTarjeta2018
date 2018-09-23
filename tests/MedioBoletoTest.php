@@ -66,6 +66,7 @@ class MedioBoletoTest extends TestCase {
 
   //Para ver que no puede volver a pagar con medio antes de los 5 minutos.
   public function testPagarConMedioUni_False(){
+    $colectivo = new Colectivo(144,"RosarioBus",5);
     $tarjeta1=new MedioBoletoUni(2345);
     $tiempo=new TiempoFalso;
 
