@@ -7,7 +7,7 @@ class Colectivo implements ColectivoInterface{
 	protected $emp;
 	protected $num;
 
-	public function __construct($lin, $ban, $emp, $num) {
+	public function __construct($lin, $emp, $num) {
         $this->lin = $lin;
 		$this->emp = $emp;
 		$this->num = $num;
