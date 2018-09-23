@@ -2,5 +2,5 @@
 namespace TrabajoTarjeta;
 
 class FranquiciaCompleta extends Tarjeta {
-	public $precio=0.0;
+	protected $precio=0.0;
 }

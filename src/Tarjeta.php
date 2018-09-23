@@ -5,7 +5,8 @@ class Tarjeta implements TarjetaInterface {
   protected $saldo=0;
   public $bandera=0;
   protected $plus=2;
-  public $precio=14.80;
+  protected $precio=14.80;
+  protected $cantTransb=0;
   
 	public function __construct($id){
 	  $this->id = $id;
@@ -49,6 +50,12 @@ class Tarjeta implements TarjetaInterface {
 
       return $this->bandera;
     }
+
+    //obtiene el precio de viaje para cada tipo de tarjeta
+    public function obtenerPrecio(){
+      return $this->precio;
+    }
+
     /**
      * Devuelve el saldo que le queda a la tarjeta.
      *
