@@ -48,7 +48,7 @@ class TarjetaTest extends TestCase {
      * Comprueba que la tarjeta pueda saber cuantos viajes plus tiene.
      */
   public function testCantViajePlus(){
-    $colectivo = new Colectivo(144, "N", "RosarioBus",5);
+    $colectivo = new Colectivo(144,"RosarioBus",5);
       $tarjeta = new Tarjeta(2345);
 
       $this->assertEquals($tarjeta->obtenerCantidadPlus(),2);
@@ -68,7 +68,7 @@ class TarjetaTest extends TestCase {
      */
 
   public function testDescuentoViajePlus()
-  { $colectivo = new Colectivo(144, "N", "RosarioBus",5);
+  { $colectivo = new Colectivo(144,"RosarioBus",5);
     $tarjeta=new Tarjeta(2345);
 
     $this->assertTrue($colectivo->pagarCon($tarjeta));

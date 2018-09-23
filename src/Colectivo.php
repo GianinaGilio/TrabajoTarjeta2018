@@ -19,10 +19,6 @@ class Colectivo implements ColectivoInterface{
 	return $this->lin;
     }
 
-    public function bandera(){
-        return $this->ban;
-        }
-
     public function empresa(){
     return $this->emp;    
     }
