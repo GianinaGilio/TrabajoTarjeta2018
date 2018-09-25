@@ -17,7 +17,7 @@ class Boleto implements BoletoInterface {
     protected $saldo;
     protected $linea_colectivo;
     protected $fecha;
-    protected $transbordo;
+    protected $trasbordo;
 
     public function __construct($valor, ColectivoInterface $colectivo, TarjetaInterface $tarjeta, TiempoInterface $tiempo) {
         $this->valor = $valor;
@@ -27,7 +27,7 @@ class Boleto implements BoletoInterface {
         $this->fecha= date("D/m/Y H:i:s", $tiempo->time());
         
         //Nos va a servir para que el boleto diga TRANSBORDO, si la bandera es TRUE
-        $this->transbordo= $tarjeta->banderaTransb;
+        $this->trasbordo= $tarjeta->banderaTrasb;
     }
 
     /**
