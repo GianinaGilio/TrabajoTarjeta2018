@@ -9,6 +9,7 @@ class MedioBoletoTest extends TestCase {
      * Comprueba que el medio boleto funcione correctamente.
      */
 
+
   public function testPagarConMedio()
   { $colectivo = new Colectivo(144,"RosarioBus",5);
     $tarjeta=new MedioBoleto(2345);
@@ -78,4 +79,19 @@ class MedioBoletoTest extends TestCase {
     $this->assertFalse($tarjeta1->descuentoSaldo($tiempo, $colectivo));
   }
 
+
+    public function testTrasbordoMedio(){
+      $colectivo = new Colectivo(144,"RosarioBus",6);
+      $colectivo2 = new Colectivo(101,"RosarioBus",7);
+      $tarjetam = new MedioBoleto(2345);
+      $tiempo = new TiempoFalso;
+
+      $tarjetam->recargar(100);
+      $colectivo->pagarCon($tarjetam);
+      $tiempo->avanzar(1200);
+      $this->assertTrue($colectivo2->pagarCon($tarjetam));
+      $this->assertEquals($tarjetam->obtenerSaldo(),(92.6-(7.4*0.33)));
+
+
+    }
 }
