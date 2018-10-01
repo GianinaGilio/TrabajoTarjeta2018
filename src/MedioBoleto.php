@@ -5,9 +5,10 @@ class MedioBoleto extends Tarjeta {
 	protected $precio=7.40;
 	protected $universitario = false;
 	protected $ultimopago;
-	protected $cantTransb=1;
-  	public $banderaTransb;
+	protected $cantTrasb=1;
+  	public $banderaTrasb;
 	protected $lineaUltColectivo;
+
 
 
 	public function descuentoSaldo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
@@ -19,8 +20,8 @@ class MedioBoleto extends Tarjeta {
 		$dia=date("D", $tiempo->time());
     	$hora=idate("H", $tiempo->time());
 	  
-		//TRANSBORDO
-      if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTransb==0)
+		//TRASBORDO
+      if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
       {
         if($hora >= 6 && $hora <= 22)
         {
@@ -31,8 +32,8 @@ class MedioBoleto extends Tarjeta {
               $this->ultimopago = $tiempo->time();
               $this->lineaUltColectivo = $colectivo->linea();
               $this->saldo-= (33*$this->precio)/100;
-              $this->banderaTransb=TRUE;
-              $this->cantTransb=1;
+              $this->banderaTrasb=TRUE;
+              $this->cantTrasb=1;
               return TRUE;
             }
           }
@@ -43,8 +44,8 @@ class MedioBoleto extends Tarjeta {
             {
               $this->ultimopago = $tiempo->time();
               $this->saldo-= (33*$this->precio)/100;
-              $this->banderaTransb=TRUE;
-              $this->cantTransb=1;
+              $this->banderaTrasb=TRUE;
+              $this->cantTrasb=1;
               return TRUE;
             }
           }
@@ -59,8 +60,8 @@ class MedioBoleto extends Tarjeta {
             {
               $this->ultimopago = $tiempo->time();
               $this->saldo-= (33*$this->precio)/100;
-              $this->banderaTransb=TRUE;
-              $this->cantTransb=1;
+              $this->banderaTrasb=TRUE;
+              $this->cantTrasb=1;
               return TRUE;
             }
           }
@@ -70,8 +71,8 @@ class MedioBoleto extends Tarjeta {
             {
               $this->ultimopago = $tiempo->time();
               $this->saldo-= (33*$this->precio)/100;
-              $this->banderaTransb=TRUE;
-              $this->cantTransb=1;
+              $this->banderaTrasb=TRUE;
+              $this->cantTrasb=1;
               return TRUE;
             }
           }
@@ -82,18 +83,18 @@ class MedioBoleto extends Tarjeta {
             {
               $this->ultimopago = $tiempo->time();
               $this->saldo-= (33*$this->precio)/100;
-              $this->banderaTransb=TRUE;
-              $this->cantTransb=1;
+              $this->banderaTrasb=TRUE;
+              $this->cantTrasb=1;
               return TRUE;
             }
         }
-      }//FIN TRANSBORDO
+      }//FIN TRASBORDO
 
 			$this->ultimopago = $tiempo->time();
 			$this->saldo-=$this->precio;
 			$this->lineaUltColectivo = $colectivo->linea();
-     		$this->banderaTransb=FALSE;
-     		$this->cantTransb=0;
+     		$this->banderaTrasb=FALSE;
+     		$this->cantTrasb=0;
 			return TRUE;
 	}
 
@@ -106,8 +107,8 @@ class MedioBoletoUni extends MedioBoleto {
 	protected $vecesUsado= 0;
 	protected $ultimopago=0;
 	protected $ultimomedio;
-	protected $cantTransb=1;
-	public $banderaTransb;
+	protected $cantTrasb=1;
+	public $banderaTrasb;
 	protected $lineaUltColectivo;
 
 	public function descuentoSaldo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
@@ -116,8 +117,8 @@ class MedioBoletoUni extends MedioBoleto {
 	if($this->vecesUsado == 2)
 	{
 		
-      //TRANSBORDO DE BOLETO NORMAL
-      if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTransb==0)
+      //TRASBORDO DE BOLETO NORMAL
+      if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
       {
         if($hora >= 6 && $hora <= 22)
         {
@@ -128,8 +129,8 @@ class MedioBoletoUni extends MedioBoleto {
               $this->ultimopago = $tiempo->time();
               $this->lineaUltColectivo = $colectivo->linea();
               $this->saldo-= (33*$this->precioNormal)/100;
-              $this->banderaTransb=TRUE;
-              $this->cantTransb=1;
+              $this->banderaTrasb=TRUE;
+              $this->cantTrasb=1;
               return TRUE;
             }
           }
@@ -140,8 +141,8 @@ class MedioBoletoUni extends MedioBoleto {
             {
               $this->ultimopago = $tiempo->time();
               $this->saldo-= (33*$this->precioNormal)/100;
-              $this->banderaTransb=TRUE;
-              $this->cantTransb=1;
+              $this->banderaTrasb=TRUE;
+              $this->cantTrasb=1;
               return TRUE;
             }
           }
@@ -156,8 +157,8 @@ class MedioBoletoUni extends MedioBoleto {
             {
               $this->ultimopago = $tiempo->time();
               $this->saldo-= (33*$this->precioNormal)/100;
-              $this->banderaTransb=TRUE;
-              $this->cantTransb=1;
+              $this->banderaTrasb=TRUE;
+              $this->cantTrasb=1;
               return TRUE;
             }
           }
@@ -167,8 +168,8 @@ class MedioBoletoUni extends MedioBoleto {
             {
               $this->ultimopago = $tiempo->time();
               $this->saldo-= (33*$this->precioNormal)/100;
-              $this->banderaTransb=TRUE;
-              $this->cantTransb=1;
+              $this->banderaTrasb=TRUE;
+              $this->cantTrasb=1;
               return TRUE;
             }
           }
@@ -179,19 +180,19 @@ class MedioBoletoUni extends MedioBoleto {
             {
               $this->ultimopago = $tiempo->time();
               $this->saldo-= (33*$this->precioNormal)/100;
-              $this->banderaTransb=TRUE;
-              $this->cantTransb=1;
+              $this->banderaTrasb=TRUE;
+              $this->cantTrasb=1;
               return TRUE;
             }
         }
-	  }//FIN TRANSBORDO DE BOLETO NORMAL
+	  }//FIN TRASBORDO DE BOLETO NORMAL
 	  
 
 	  $this->ultimopago = $tiempo->time();
 	  $this->saldo-=$this->precioNormal;
 	  $this->lineaUltColectivo = $colectivo->linea();
-	  $this->banderaTransb=FALSE;
-	  $this->cantTransb=0;
+	  $this->banderaTrasb=FALSE;
+	  $this->cantTrasb=0;
 		return TRUE;
 	}
 	else{
@@ -201,8 +202,8 @@ class MedioBoletoUni extends MedioBoleto {
 				return FALSE;
 			}
 
-			//TRANSBORDO DE MEDIO BOLETO
-		  if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTransb==0)
+			//TRASBORDO DE MEDIO BOLETO
+		  if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
 		  {
 			if($hora >= 6 && $hora <= 22)
 			{
@@ -213,8 +214,8 @@ class MedioBoletoUni extends MedioBoleto {
 				  $this->ultimopago = $tiempo->time();
 				  $this->lineaUltColectivo = $colectivo->linea();
 				  $this->saldo-= (33*$this->precio)/100;
-				  $this->banderaTransb=TRUE;
-				  $this->cantTransb=1;
+				  $this->banderaTrasb=TRUE;
+				  $this->cantTrasb=1;
 				  return TRUE;
 				}
 			  }
@@ -225,8 +226,8 @@ class MedioBoletoUni extends MedioBoleto {
 				{
 				  $this->ultimopago = $tiempo->time();
 				  $this->saldo-= (33*$this->precio)/100;
-				  $this->banderaTransb=TRUE;
-				  $this->cantTransb=1;
+				  $this->banderaTrasb=TRUE;
+				  $this->cantTrasb=1;
 				  return TRUE;
 				}
 			  }
@@ -241,8 +242,8 @@ class MedioBoletoUni extends MedioBoleto {
 				{
 				  $this->ultimopago = $tiempo->time();
 				  $this->saldo-= (33*$this->precio)/100;
-				  $this->banderaTransb=TRUE;
-				  $this->cantTransb=1;
+				  $this->banderaTrasb=TRUE;
+				  $this->cantTrasb=1;
 				  return TRUE;
 				}
 			  }
@@ -252,8 +253,8 @@ class MedioBoletoUni extends MedioBoleto {
 				{
 				  $this->ultimopago = $tiempo->time();
 				  $this->saldo-= (33*$this->precio)/100;
-				  $this->banderaTransb=TRUE;
-				  $this->cantTransb=1;
+				  $this->banderaTrasb=TRUE;
+				  $this->cantTrasb=1;
 				  return TRUE;
 				}
 			  }
@@ -264,18 +265,18 @@ class MedioBoletoUni extends MedioBoleto {
 				{
 				  $this->ultimopago = $tiempo->time();
 				  $this->saldo-= (33*$this->precio)/100;
-				  $this->banderaTransb=TRUE;
-				  $this->cantTransb=1;
+				  $this->banderaTrasb=TRUE;
+				  $this->cantTrasb=1;
 				  return TRUE;
 				}
 			}
-		  }//FIN TRANSBORDO DE MEDIO BOLETO
+		  }//FIN TRASBORDO DE MEDIO BOLETO
 
 
 		$this->ultimopago = $tiempo->time();
 		$this->lineaUltColectivo = $colectivo->linea();
-		$this->banderaTransb=FALSE;
-		$this->cantTransb=0;
+		$this->banderaTrasb=FALSE;
+		$this->cantTrasb=0;
 		$this->vecesUsado += 1;
 		$this->saldo-=$this->precio;
 		if($this->vecesUsado==2)
