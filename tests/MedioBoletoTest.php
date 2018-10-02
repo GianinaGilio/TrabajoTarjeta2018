@@ -92,6 +92,9 @@ class MedioBoletoTest extends TestCase {
       $tiempo->avanzar(1200);
       $this->assertTrue($tarjetam->descuentoSaldo($tiempo,$colectivo2));
       $this->assertEquals($tarjetam->obtenerSaldo(),(92.6-(7.4*0.33)));
+      $tiempo->avanzar(5460);
+      $this->assertTrue($tarjetam->descuentoSaldo($tiempo,$colectivo));
+      $this->assertEquals($tarjetam->obtenerSaldo(),(90.178-7.4));
   }
 
     public function testTrasbordoMedioUni(){
@@ -106,5 +109,6 @@ class MedioBoletoTest extends TestCase {
       $tiempo->avanzar(1200);
       $this->assertTrue($tarjetam->descuentoSaldo($tiempo,$colectivo2));
       $this->assertEquals($tarjetam->obtenerSaldo(),(92.6-(7.4*0.33)));
+
     }
 }
