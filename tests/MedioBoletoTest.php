@@ -83,7 +83,7 @@ class MedioBoletoTest extends TestCase {
     public function testTrasbordoMedio(){
       $colectivo = new Colectivo(144,"RosarioBus",6);
       $colectivo2 = new Colectivo(101,"RosarioBus",7);
-      $tarjetam = new MedioBoleto(2345);
+      $tarjetam = new MedioBoleto(45);
       $tiempo = new TiempoFalso;
 
       $tarjetam->recargar(100);
