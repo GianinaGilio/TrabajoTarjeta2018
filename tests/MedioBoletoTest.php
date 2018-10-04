@@ -123,11 +123,11 @@ class MedioBoletoTest extends TestCase {
 	$tarjeta2->recargar(40);
 
 	$this->assertTrue($tarjeta1->descuentoSaldo($tiempo,$colectivo1));
-	$this->assertTrue($tarjeta2->descuentoSaldo($tiempo,$colectivo1));
+	$this->assertTrue($tarjeta2->descuentoSaldo($tiempo,$colectivo2));
 	
 	    //Avanzo 70 minutos para comprobar que, por ser de noche, funciona el trasbordo.
 	$tiempo->avanzar(4200);
-	$this->assertEquals($tarjeta1->obtenerSaldo(),(32.6-($tarjeta1->obtenerPrecio())*0.33));
+	$this->assertEquals($tarjeta1->obtenerSaldo(),(32.6-(($tarjeta1->obtenerPrecio())*0.33)));
     }
 	
 	
