@@ -107,6 +107,31 @@ class MedioBoletoTest extends TestCase {
       $this->assertTrue($tarjetam->descuentoSaldo($tiempo,$colectivo2));
       $this->assertEquals($tarjetam->obtenerSaldo(),(82.758-(7.4*0.33)));
   }
+	
+	
+    public function testTrasbordoNoche(){
+	$tiempo= new TiempoFalso;
+	$tiempo->avanzar(1538704800);
+	
+	$colectivo1 = new Colectivo(144,"RosarioBus",3);
+	$colectivo2 = new Colectivo(101,"RosarioBus",6);	
+	    
+	$tarjeta1 = new MedioBoleto(23);
+	$tarjeta2 = new MedioBoletoUni(12);
+	    
+	$tarjeta1->recargar(40);
+	$tarjeta2->recargar(40);
+
+	$this->assertTrue($tarjeta1->descuentoSaldo($tiempo,$colectivo1));
+	$this->assertTrue($tarjeta2->descuentoSaldo($tiempo,$colectivo1));
+	
+	    //Avanzo 70 minutos para comprobar que, por ser de noche, funciona el trasbordo.
+	$tiempo->avanzar(4200);
+	$this->assertEquals($tarjeta1->obtenerSaldo(),(32.6-($tarjeta1->precio)*0.33);
+    }
+	
+	
+	
     public function testTrasbordoMedioUni(){
       $colectivo = new Colectivo(144,"RosarioBus",6);
       $colectivo2 = new Colectivo(101,"RosarioBus",7);
