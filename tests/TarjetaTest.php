@@ -85,13 +85,13 @@ class TarjetaTest extends TestCase {
   public function testTrasbordoTarjeta(){
     $colectivo = new Colectivo(144,"RosarioBus",5);
     $colectivo2 = new Colectivo(143,"RosarioBus",5);
-    $tarjeta=new Tarjeta(2345);
+    $tarjeta=new Tarjeta(235);
     $tarjeta->recargar(100);
     $tiempo = new TiempoFalso;
-    //Lo adelanto a un domingo a las 4:39.
+    //Lo adelanto a un domingo a las 4:38.
     $tiempo->avanzar(1539545889);
-    $dia=date("D", $tiempo->time());
-    $hora=idate("H", $tiempo->time());
+    //$dia=date("D", $tiempo->time());
+    //$hora=idate("H", $tiempo->time());
 
     $this->assertTrue($colectivo->pagarCon($tarjeta));
     $tiempo->avanzar(5100);
