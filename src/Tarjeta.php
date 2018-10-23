@@ -14,7 +14,10 @@ class Tarjeta implements TarjetaInterface {
 	public function __construct($id){
 	  $this->id = $id;
 	}
-	
+  
+  public function cantTrasb(){
+    return $this->cantTrasb;
+  }
     public function recargar($monto) {
       // Montos aceptados:10, 20, 30, 50, 100, 510.15 y 962.59
       if ($monto == 10 || $monto == 20 || $monto == 30 || $monto == 50 || $monto == 100 || $monto == 510.15 || $monto == 962.59) {
