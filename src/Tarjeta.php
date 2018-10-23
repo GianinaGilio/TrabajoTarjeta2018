@@ -5,6 +5,7 @@ class Tarjeta implements TarjetaInterface {
   protected $saldo=0;
   protected $plus=2;
   protected $precio=14.80;
+  protected $strasbordo=4.884;
   protected $cantTrasb=1;
   public $banderaTrasb;
   protected $ultimopago;
@@ -142,7 +143,7 @@ class Tarjeta implements TarjetaInterface {
                 $this->ultimopago = $tiempo->time();
                 $this->lineaUltColectivo = $colectivo->linea();
 
-                $this->saldo = $this->saldo - ($this->precio)*0.33;
+                $this->saldo = $this->saldo - $this->strasbordo;
                 $this->cantTrasb=1;
                 return TRUE;
             
