@@ -142,7 +142,7 @@ class Tarjeta implements TarjetaInterface {
                 $this->ultimopago = $tiempo->time();
                 $this->lineaUltColectivo = $colectivo->linea();
 
-                $this->saldo-= (0.33*$this->precio);
+                $this->saldo = $this->saldo - ($this->precio)*0.33;
                 $this->cantTrasb=1;
                 return TRUE;
             
