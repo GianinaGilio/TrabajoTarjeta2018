@@ -5,7 +5,7 @@ class Tarjeta implements TarjetaInterface {
   protected $saldo=0;
   protected $plus=2;
   protected $precio=14.80;
-  protected $cantTrasb=0;
+  protected $cantTrasb=1;
   public $banderaTrasb;
   protected $ultimopago;
   protected $lineaUltColectivo;
