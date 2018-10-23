@@ -93,10 +93,12 @@ class TarjetaTest extends TestCase {
     //$dia=date("D", $tiempo->time());
     //$hora=idate("H", $tiempo->time());
 
-    //verifica que las lines de colectivos son distintas, por lo que deberia entrar al if.
+    //verifico que las lines de colectivos son distintas, y que la cant de trasb es correcta
+    // por lo que deberia entrar al if.
     $this->assertTrue($colectivo->linea() != $colectivo2->linea());
     $this->assertEquals($tarjetaa->cantTrasb(),1);
-    $colectivo->pagarCon($tarjetaa);
+    
+    $this->assertTrue($colectivo->pagarCon($tarjetaa));
     $this->assertEquals($tarjetaa->obtenerSaldo(),85.20);
     $tiempo->avanzar(100);
     $colectivo2->pagarCon($tarjetaa);
