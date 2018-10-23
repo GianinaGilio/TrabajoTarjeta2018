@@ -93,6 +93,8 @@ class TarjetaTest extends TestCase {
     //$dia=date("D", $tiempo->time());
     //$hora=idate("H", $tiempo->time());
 
+
+    $this->assertTrue($colectivo->linea() != $colectivo2->linea());
     $colectivo->pagarCon($tarjetaa);
     $this->assertEquals($tarjetaa->obtenerSaldo(),85.20);
     $tiempo->avanzar(100);
