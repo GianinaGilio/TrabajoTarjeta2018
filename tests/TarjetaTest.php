@@ -87,9 +87,8 @@ class TarjetaTest extends TestCase {
     $colectivo2 = new Colectivo(143,"RosarioBus",5);
     $tarjetaa=new Tarjeta(235);
     $tarjetaa->recargar(100);
-    $tiempo = new TiempoFalso;
-    //Lo adelanto a un domingo a las 4:38.
-    $tiempo->avanzar(1539545889);
+    $tiempo = new TiempoFalso(1539545889);
+    
     //$dia=date("D", $tiempo->time());
     //$hora=idate("H", $tiempo->time());
 
