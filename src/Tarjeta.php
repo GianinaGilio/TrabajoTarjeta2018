@@ -80,8 +80,8 @@ class Tarjeta implements TarjetaInterface {
             {
               if(($tiempo->time())-($this->ultimopago) <= 3600)
               {
-                $this->ultimopago = $tiempo->time();
-                $this->lineaUltColectivo = $colectivo->linea();
+                //$this->ultimopago = $tiempo->time();
+                //$this->lineaUltColectivo = $colectivo->linea();
                // $this->saldo-= (33*$this->precio)/100;
                 $this->banderaTrasb=TRUE;
                 $this->cantTrasb=1;
@@ -92,7 +92,7 @@ class Tarjeta implements TarjetaInterface {
           {
             if(($tiempo->time())-($this->ultimopago) <= 5400)
             {
-              $this->ultimopago = $tiempo->time();
+              //$this->ultimopago = $tiempo->time();
               //$this->saldo-= (33*$this->precio)/100;
               $this->banderaTrasb=TRUE;
               $this->cantTrasb=1;
@@ -106,7 +106,7 @@ class Tarjeta implements TarjetaInterface {
             {
               if(($tiempo->time())-($this->ultimopago) <= 3600)
               {
-                $this->ultimopago = $tiempo->time();
+                //$this->ultimopago = $tiempo->time();
                 //$this->saldo-= (33*$this->precio)/100;
                 $this->banderaTrasb=TRUE;
                 $this->cantTrasb=1;
@@ -117,7 +117,7 @@ class Tarjeta implements TarjetaInterface {
             if($hora >= 14 && $hora <= 22){
               if(($tiempo->time())-($this->ultimopago) <= 5400)
               {
-                $this->ultimopago = $tiempo->time();
+                //$this->ultimopago = $tiempo->time();
                 //$this->saldo-= (33*$this->precio)/100;
                 $this->banderaTrasb=TRUE;
                 $this->cantTrasb=1;
@@ -129,7 +129,7 @@ class Tarjeta implements TarjetaInterface {
           if($hora > 22 || $hora < 6){
             if(($tiempo->time())-($this->ultimopago) <= 5400)
               {
-                $this->ultimopago = $tiempo->time();
+                //$this->ultimopago = $tiempo->time();
                 //$this->saldo-= (33*$this->precio)/100;
                 $this->banderaTrasb=TRUE;
                 $this->cantTrasb=1;
@@ -150,7 +150,9 @@ class Tarjeta implements TarjetaInterface {
         
           if($this->trasbordo($tiempo,$colectivo)==TRUE)
           {
-              
+                $this->ultimopago = $tiempo->time();
+                $this->lineaUltColectivo = $colectivo->linea();
+
                 $this->saldo-= (0.33*$this->precio);
                 $this->cantTrasb=1;
                 return TRUE;
