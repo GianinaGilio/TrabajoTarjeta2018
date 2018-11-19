@@ -10,7 +10,12 @@ class MedioBoleto extends Tarjeta {
 	protected $lineaUltColectivo;
 
 
-
+	/**
+     * Descuenta el saldo del medio boleto, si es posible, realiza el pago del medio boleto, si no, de un boleto común
+		 * tiene en cuenta el trasbordo
+     * @param TiempoInterface @param ColectivoInterface
+     * @return bool
+     */
 	public function descuentoSaldo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
 			if((($tiempo->time())-($this->ultimopago)) < 300 )
 			{
@@ -100,6 +105,12 @@ class MedioBoleto extends Tarjeta {
 
 }
 
+/**
+     * Descuenta el saldo del medio boleto, si es posible, realiza el pago del medio boleto, si no, de un boleto común
+		 * tiene en cuenta el trasbordo
+     * @param TiempoInterface @param ColectivoInterface
+     * @return bool
+     */
 class MedioBoletoUni extends MedioBoleto {
 	protected $precio=7.40;
 	protected $precioNormal=14.80;
@@ -110,6 +121,8 @@ class MedioBoletoUni extends MedioBoleto {
 	protected $cantTrasb=1;
 	public $banderaTrasb;
 	protected $lineaUltColectivo;
+
+
 
 	public function descuentoSaldo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
 		$dia=date("D", $tiempo->time());

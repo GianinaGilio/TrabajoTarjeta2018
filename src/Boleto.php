@@ -5,7 +5,7 @@ namespace TrabajoTarjeta;
 class Boleto implements BoletoInterface {
 
 	/**$idTarjeta -> devuelve el numero ID de la tarjeta.
-	*  $valor -> total abonado.
+	* $valor -> total abonado.
 	* $linea_colectivo -> linea del colectivo que creo el boleto.
 	* $tipoTarjeta -> si es mediaFranquicia, FranquicaCompleta o normal
     * $saldo -> saldo actual de la tarjeta.
@@ -44,19 +44,33 @@ class Boleto implements BoletoInterface {
      * 
      * @return ColectivoInterface
      */
-    //MODIFICAR ESTA FUNCION
     public function obtenerLinea() {
         return $this->linea_colectivo;
     }
 
+     /**
+     * Devuelve el ID de la tarjeta
+     * 
+     * @return int
+     */
     public function obtenerID() {
         return $this->idTarjeta;
     }
 
+    /**
+     * Devuelve el saldo que queda en la tarjeta
+     * 
+     * @return float
+     */
     public function obtenerSaldo() {
         return $this->saldo;
     }
 
+    /**
+     * Devuelve la fecha del día y hora del momento en el que se efectuo el pago
+     * 
+     * @return string
+     */
     public function obtenerFecha() {
         return $this->fecha;
     }
