@@ -10,6 +10,11 @@ class TiempoFalso implements TiempoInterface{
         $this->tiempo = $iniciarEn;
     } 
 
+    /** 
+    * Avanza el tiempo falso a los segundos especificados
+    *@param int
+    * sin retorno
+    */
     public function avanzar($segundos){
         $this->tiempo += $segundos;
     }
