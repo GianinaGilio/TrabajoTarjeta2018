@@ -5,7 +5,7 @@ namespace TrabajoTarjeta;
 interface ColectivoInterface {
 
     /**
-     * Devuelve el nombre de la linea. Ejemplo '142 Negro'
+     * Devuelve el nombre de la linea. Ejemplo 'Negro'
      *
      * @return string
      */

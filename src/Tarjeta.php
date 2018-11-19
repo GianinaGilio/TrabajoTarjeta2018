@@ -19,11 +19,7 @@ class Tarjeta implements TarjetaInterface {
     return $this->cantTrasb;
   }
 
-    /** 
-     * Recarga la tarjeta con un monto de dinero especificado
-     * @param int
-     * @return float
-     */
+    
     public function recargar($monto) {
       // Montos aceptados:10, 20, 30, 50, 100, 510.15 y 962.59
       if ($monto == 10 || $monto == 20 || $monto == 30 || $monto == 50 || $monto == 100 || $monto == 510.15 || $monto == 962.59) {
@@ -63,20 +59,12 @@ class Tarjeta implements TarjetaInterface {
       return $this->bandera;
     }
 
-    /**
-     * Devuelve el el precio del boleto
-     *
-     * @return float
-     */
+    
     public function obtenerPrecio(){
       return $this->precio;
     }
 
-    /**
-     * Devuelve el saldo que le queda a la tarjeta.
-     *
-     * @return float
-     */
+    
     public function obtenerSaldo() {
       return $this->saldo;
     }
@@ -145,12 +133,7 @@ class Tarjeta implements TarjetaInterface {
       return $this->banderaTrasb;
   }
   
-  /**
-     * Descuenta elsaldo de la tarjeta
-     * Si se realiza, devuelve TRUE, si no FALSE
-     * @param TiempoInterface @param ColectivoInterface
-     * @return bool
-     */
+  
   public function descuentoSaldo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
         $dia=date("D", $tiempo->time());
         $hora=idate("H", $tiempo->time());
@@ -177,20 +160,12 @@ class Tarjeta implements TarjetaInterface {
   
 
 
-    /**
-     * Devuelve el id de la tarjeta
-     *
-     * @return int
-     */
+  
     public function obtenerID(){
       return $this->id;
     }
 
-    /**
-     * Descuenta los viajes plus de la tarjeta
-     * Si es posible, se realiza el descuento y devuelve TRUE, si no FALSE
-     * @return bool
-     */
+
     public function descuentoViajesPlus(){
       if($this->plus>0)
       {
@@ -204,11 +179,7 @@ class Tarjeta implements TarjetaInterface {
 
     }
 
-    /**
-     * Devuelve la cantidad de viajes plus que peude realizar la tarjeta
-     *
-     * @return int
-     */
+    
     public function obtenerCantidadPlus(){
       return $this->plus;
     }

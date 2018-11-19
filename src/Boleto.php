@@ -30,47 +30,27 @@ class Boleto implements BoletoInterface {
         $this->trasbordo= $tarjeta->banderaTrasb;
     }
 
-    /**
-     * Devuelve el valor del boleto.
-     *
-     * @return int
-     */
+
     public function obtenerValor() {
         return $this->valor;
     }
 
-    /**
-     * Devuelve un objeto que respresenta el colectivo donde se viajó.
-     * 
-     * @return ColectivoInterface
-     */
+   
     public function obtenerLinea() {
         return $this->linea_colectivo;
     }
 
-     /**
-     * Devuelve el ID de la tarjeta
-     * 
-     * @return int
-     */
+     
     public function obtenerID() {
         return $this->idTarjeta;
     }
 
-    /**
-     * Devuelve el saldo que queda en la tarjeta
-     * 
-     * @return float
-     */
+   
     public function obtenerSaldo() {
         return $this->saldo;
     }
 
-    /**
-     * Devuelve la fecha del día y hora del momento en el que se efectuo el pago
-     * 
-     * @return string
-     */
+    
     public function obtenerFecha() {
         return $this->fecha;
     }
