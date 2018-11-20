@@ -10,7 +10,7 @@ class TarjetaTest extends TestCase {
      * Comprueba que la tarjeta aumenta su saldo cuando se carga saldo válido.
      */
     public function testCargaSaldo() {
-        $tarjeta = new Tarjeta;
+        $tarjeta = new Tarjeta(2345);
 
         $this->assertTrue($tarjeta->recargar(10));
         $this->assertEquals($tarjeta->obtenerSaldo(), 10);
@@ -38,7 +38,7 @@ class TarjetaTest extends TestCase {
      * Comprueba que la tarjeta no puede cargar saldos invalidos.
      */
     public function testCargaSaldoInvalido() {
-      $tarjeta = new Tarjeta;
+      $tarjeta = new Tarjeta(2345);
 
       $this->assertFalse($tarjeta->recargar(15));
       $this->assertEquals($tarjeta->obtenerSaldo(), 0);
@@ -49,7 +49,7 @@ class TarjetaTest extends TestCase {
      */
   public function testCantViajePlus(){
     $colectivo = new Colectivo(144,"RosarioBus",5);
-      $tarjeta = new Tarjeta;
+      $tarjeta = new Tarjeta(2345);
 
       $this->assertEquals($tarjeta->obtenerCantidadPlus(),2);
       $this->assertTrue($colectivo->pagarCon($tarjeta));
@@ -69,7 +69,7 @@ class TarjetaTest extends TestCase {
 
   public function testDescuentoViajePlus()
   { $colectivo = new Colectivo(144,"RosarioBus",5);
-    $tarjeta=new Tarjeta;
+    $tarjeta=new Tarjeta(2345);
 
     $this->assertTrue($colectivo->pagarCon($tarjeta));
     $this->assertTrue($colectivo->pagarCon($tarjeta));
@@ -82,7 +82,28 @@ class TarjetaTest extends TestCase {
 
   }
 
+  public function testTrasbordoTarjeta(){
+    $colectivo = new Colectivo(144,"RosarioBus",5);
+    $colectivo2 = new Colectivo(143,"RosarioBus",5);
+    $tarjetaa=new Tarjeta(235);
+    $tarjetaa->recargar(100);
+    $tiempo = new TiempoFalso(1539545889);
+    
+    //$dia=date("D", $tiempo->time());
+    //$hora=idate("H", $tiempo->time());
 
+    //verifico que las lines de colectivos son distintas, y que la cant de trasb es correcta
+    // por lo que deberia entrar al if.
+    $this->assertTrue($colectivo->linea() != $colectivo2->linea());
+    $this->assertEquals($tarjetaa->cantTrasb(),1);
+    
+    $this->assertTrue($colectivo->pagarCon($tarjetaa));
+    $this->assertEquals($tarjetaa->obtenerSaldo(),85.20);
+    $tiempo->avanzar(100);
+    $colectivo2->pagarCon($tarjetaa);
+    $this->assertEquals($tarjetaa->obtenerSaldo(),(80.316));
+
+  }
 
 
 }
