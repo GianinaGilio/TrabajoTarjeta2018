@@ -30,11 +30,11 @@ class ColectivoTest extends TestCase {
 	$tiempo = new TiempoFalso;        
 
       $this->assertEquals($tarjeta->obtenerCantidadPlus(),2);
-      $this->assertTrue($colectivo->pagarCon($tarjeta));
+      $this->assertTrue($colectivo->pagarCon($tiempo,$tarjeta));
       $this->assertEquals($tarjeta->obtenerCantidadPlus(),1);
-      $this->assertTrue($colectivo->pagarCon($tarjeta));
+      $this->assertTrue($colectivo->pagarCon($tiempo,$tarjeta));
       $this->assertEquals($tarjeta->obtenerCantidadPlus(),0);
-      $this->assertFalse($colectivo->pagarCon($tarjeta));
+      $this->assertFalse($colectivo->pagarCon($tiempo,$tarjeta));
     }
 
     /**
