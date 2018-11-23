@@ -29,8 +29,8 @@ class Colectivo implements ColectivoInterface{
     }
 
     
-    public function pagarCon(TarjetaInterface $tarjeta){
-         $tiempo= new Tiempo();
+    public function pagarCon(TiempoInterface $tiempo, TarjetaInterface $tarjeta){
+        
         if($tarjeta->obtenerPrecio() != 0 && $tarjeta->obtenerSaldo() < 14.80)
         {
             return $tarjeta->descuentoViajesPlus();
