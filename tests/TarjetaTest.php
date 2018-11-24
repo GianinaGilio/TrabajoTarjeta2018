@@ -87,9 +87,11 @@ class TarjetaTest extends TestCase {
   public function testTrasbordoTarjeta(){
     $colectivo = new Colectivo(144,"RosarioBus",5);
     $colectivo2 = new Colectivo(143,"RosarioBus",5);
-    $tarjetaa=new Tarjeta(235);
+    
+	$tarjetaa=new Tarjeta(235);
     $tarjetaa->recargar(100);
-    $tiempo = new TiempoFalso(1539545889);
+    
+	$tiempo = new TiempoFalso(1539545889);
     
     //$dia=date("D", $tiempo->time());
     //$hora=idate("H", $tiempo->time());
@@ -104,7 +106,7 @@ class TarjetaTest extends TestCase {
     
 	$this->assertEquals($tarjetaa->cantTrasb(),0);
     
-	$tiempo->avanzar(100);
+	$tiempo->avanzar(1000);
 	
 	$colectivo2->pagarCon($tiempo,$tarjetaa);
     $this->assertEquals($tarjetaa->obtenerSaldo(),(80.316));
