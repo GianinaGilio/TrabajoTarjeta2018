@@ -144,7 +144,7 @@ class Tarjeta implements TarjetaInterface {
         $hora=idate("H", $tiempo->time());
         
         
-          if($this->trasbordo($tiempo,$colectivo)==TRUE)
+          if($this->trasbordo($tiempo,$colectivo))
           {
                 $this->ultimopago = $tiempo->time();
                 $this->lineaUltColectivo = $colectivo->linea();
