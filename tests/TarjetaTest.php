@@ -101,9 +101,12 @@ class TarjetaTest extends TestCase {
     
     $colectivo->pagarCon($tiempo,$tarjetaa);
     $this->assertEquals($tarjetaa->obtenerSaldo(),85.20);
-    $tiempo->avanzar(100);
+    
 	$this->assertEquals($tarjetaa->cantTrasb(),0);
-    $colectivo2->pagarCon($tiempo,$tarjetaa);
+    
+	$tiempo->avanzar(100);
+	
+	$colectivo2->pagarCon($tiempo,$tarjetaa);
     $this->assertEquals($tarjetaa->obtenerSaldo(),(80.316));
 
   }
