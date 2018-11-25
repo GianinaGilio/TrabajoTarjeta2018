@@ -11,6 +11,8 @@ class MedioBoleto extends Tarjeta {
 
 
 public function TrasbordoMedio(TiempoInterface $tiempo, ColectivoInterface $colectivo){
+  $dia=date("D", $tiempo->time());
+  $hora=idate("H", $tiempo->time());
   if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
   {
     /*if($hora >= 6 && $hora <= 22)
@@ -87,9 +89,6 @@ public function TrasbordoMedio(TiempoInterface $tiempo, ColectivoInterface $cole
         return FALSE;
       }
 
-    $dia=date("D", $tiempo->time());
-      $hora=idate("H", $tiempo->time());
-	  
     //TRASBORDO
      if ($this->TrasbordoMedio($tiempo,$colectivo)){
        return TRUE;
@@ -126,7 +125,9 @@ class MedioBoletoUni extends MedioBoleto {
 
 	
 public function trasbordoMedioUni(TiempoInterface $tiempo, ColectivoInterface $colectivo)	{		
-	if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
+  $dia=date("D", $tiempo->time());
+  $hora=idate("H", $tiempo->time());
+  if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
 	{
 	/*if($hora >= 6 && $hora <= 22)
 	{
@@ -196,7 +197,9 @@ public function trasbordoMedioUni(TiempoInterface $tiempo, ColectivoInterface $c
 	}*/
 }
 public function trasbordoPrecioNormal(TiempoInterface $tiempo, ColectivoInterface $colectivo){
-if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
+  $dia=date("D", $tiempo->time());
+  $hora=idate("H", $tiempo->time());
+  if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
 {
   /*if($hora >= 6 && $hora <= 22)
   {
@@ -260,9 +263,7 @@ if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
 }
 
   public function descuentoSaldo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
-    $dia=date("D", $tiempo->time());
-      $hora=idate("H", $tiempo->time());
-  if($this->vecesUsado == 2)
+    if($this->vecesUsado == 2)
   {
 		
       //TRASBORDO DE BOLETO NORMAL
