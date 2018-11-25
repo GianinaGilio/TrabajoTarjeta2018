@@ -117,7 +117,7 @@ class MedioBoletoUni extends MedioBoleto {
 
 
 	
-public function trasbordoMedio(TiempoInterface $tiempo, ColectivoInterface $colectivo)	{		
+public function trasbordoMedioUni(TiempoInterface $tiempo, ColectivoInterface $colectivo)	{		
 	if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
 	{
 	/*if($hora >= 6 && $hora <= 22)
