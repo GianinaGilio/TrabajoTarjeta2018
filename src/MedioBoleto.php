@@ -120,10 +120,10 @@ class MedioBoletoUni extends MedioBoleto {
 public function trasbordoMedioUni(TiempoInterface $tiempo, ColectivoInterface $colectivo)	{		
 	if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
 	{
-	if($hora >= 6 && $hora <= 22)
+	/*if($hora >= 6 && $hora <= 22)
 	{
 		if($dia == "Mon" || $dia == "Tue" || $dia == "Wed" || $dia == "Thu" || $dia == "Fri")
-		{
+		{*/
 		if(($tiempo->time())-($this->ultimopago) <= 3600)
 		{
 			$this->ultimopago = $tiempo->time();
@@ -134,7 +134,7 @@ public function trasbordoMedioUni(TiempoInterface $tiempo, ColectivoInterface $c
 			return TRUE;
 		}
 		}
-		
+		/*
 		if($dia == "Sun")
 		{
 		if(($tiempo->time())-($this->ultimopago) <= 5400)
@@ -185,7 +185,7 @@ public function trasbordoMedioUni(TiempoInterface $tiempo, ColectivoInterface $c
 			return TRUE;
 		}
 	}
-	}
+	}*/
 }
 
   public function descuentoSaldo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
