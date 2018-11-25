@@ -111,5 +111,33 @@ class TarjetaTest extends TestCase {
     $this->assertEquals($tarjeta->obtenerSaldo(),(65.516-(14.8*0.33)));
 }
 
+public function testTrasbordoNoche{
+    $colectivo = new Colectivo(144,"RosarioBus",6);
+    $colectivo2 = new Colectivo(101,"RosarioBus",7);
+    $tarjeta = new Tarjeta(45);
+
+    $tiempo = new TiempoFalso;
+    $tiempo->avanzar(1535693521);
+    
+  //Recargo la tarjeta y pago por primera vez.
+    $tarjeta->recargar(100);
+    $this->assertTrue($tarjeta->descuentoSaldo($tiempo,$colectivo));
+
+  //Pago por segunda vez despues de 65 minutos y verifico que funcione el trasbordo.
+    $tiempo->avanzar(3900);
+    $this->assertTrue($tarjeta->descuentoSaldo($tiempo,$colectivo2));
+    $this->assertEquals($tarjeta->obtenerSaldo(),(85.2-(14.8*0.33)));
+
+  //Pago unos minutos despues, verificando que ahora no se aplique el trasbordo.
+    $tiempo->avanzar(546);
+    $this->assertTrue($tarjeta->descuentoSaldo($tiempo,$colectivo));
+    $this->assertEquals($tarjeta->obtenerSaldo(),(80.316-14.8));
+
+    $tiempo->avanzar(1000);
+    $this->assertTrue($tarjeta->descuentoSaldo($tiempo,$colectivo2));
+    $this->assertEquals($tarjeta->obtenerSaldo(),(65.516-(14.8*0.33)));
+    
+}
+
 
 }
