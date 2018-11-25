@@ -77,8 +77,8 @@ class Tarjeta implements TarjetaInterface {
         if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
         {
          
-				if(($tiempo->time())-($this->ultimopago) <= 3600)
-				{	
+			//	if(($tiempo->time())-($this->ultimopago) <= 3600)
+				//{	
 					$this->banderaTrasb=TRUE;
 					$this->cantTrasb=1;
 					return $this->banderaTrasb;
