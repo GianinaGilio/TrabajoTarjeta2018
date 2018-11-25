@@ -11,9 +11,9 @@ class Tarjeta implements TarjetaInterface {
   protected $ultimopago;
   protected $lineaUltColectivo;
   
-	public function __construct($id){
-	  $this->id = $id;
-	}
+  public function __construct($id){
+    $this->id = $id;
+  }
   
   public function cantTrasb(){
     return $this->cantTrasb;
@@ -24,35 +24,29 @@ class Tarjeta implements TarjetaInterface {
       // Montos aceptados:10, 20, 30, 50, 100, 510.15 y 962.59
       if ($monto == 10 || $monto == 20 || $monto == 30 || $monto == 50 || $monto == 100 || $monto == 510.15 || $monto == 962.59) {
        
-        if($monto==510.15)
-        {
+        if($monto==510.15) {
           $monto += 81.93;
         }
 
-        if($monto == 962.59)
-        {
+        if($monto == 962.59) {
           $monto += 221.58;
         }
 
         $this->saldo += $monto;
 
-        if($this->plus<2)
-        {
-          if($this->plus==0)
-          {
+        if($this->plus<2) {
+          if($this->plus==0) {
             $this->saldo-= 2 * 14.80;
           }
-          else
-          {
+          else {
             $this->saldo-= 14.80;
           }
         }
 
         $this->plus=2;
-		    $this->bandera= TRUE;
+        $this->bandera= TRUE;
       }
-      else
-      {
+      else {
           $this->bandera=FALSE;
       }
 
@@ -60,7 +54,7 @@ class Tarjeta implements TarjetaInterface {
     }
 
     
-    public function obtenerPrecio(){
+    public function obtenerPrecio() {
       return $this->precio;
     }
 
@@ -70,22 +64,21 @@ class Tarjeta implements TarjetaInterface {
     }
     
      
-    public function trasbordo(TiempoInterface $tiempo, ColectivoInterface $colectivo){
+    public function trasbordo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
       $dia=date("D", $tiempo->time());
         $hora=idate("H", $tiempo->time());
         
-        if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
-        {
+        if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0) {
          
-			//	if(($tiempo->time())-($this->ultimopago) <= 3600)
-				//{	
-					$this->banderaTrasb=TRUE;
-					$this->cantTrasb=1;
-					return $this->banderaTrasb;
-				}
+      //	if(($tiempo->time())-($this->ultimopago) <= 3600)
+        //{	
+          $this->banderaTrasb=TRUE;
+          $this->cantTrasb=1;
+          return $this->banderaTrasb;
+        }
 			
 			
-			 /* if(($tiempo->time())-($this->ultimopago) <= 5400)
+        /* if(($tiempo->time())-($this->ultimopago) <= 5400)
 			  {
 				$this->banderaTrasb=TRUE;
 				$this->cantTrasb=1;
@@ -134,8 +127,7 @@ class Tarjeta implements TarjetaInterface {
         $hora=idate("H", $tiempo->time());
         
         
-          if($this->trasbordo($tiempo,$colectivo))
-          {
+          if($this->trasbordo($tiempo,$colectivo)) {
                 $this->ultimopago = $tiempo->time();
                 $this->lineaUltColectivo = $colectivo->linea();
 
@@ -156,26 +148,24 @@ class Tarjeta implements TarjetaInterface {
 
 
   
-    public function obtenerID(){
+    public function obtenerID() {
       return $this->id;
     }
 
 
-    public function descuentoViajesPlus(){
-      if($this->plus>0)
-      {
+    public function descuentoViajesPlus() {
+      if($this->plus>0) {
           $this->plus-=1;
           return TRUE;
       }
-      else
-      {
+      else {
         return FALSE;
       }
 
     }
 
     
-    public function obtenerCantidadPlus(){
+    public function obtenerCantidadPlus() {
       return $this->plus;
     }
 }

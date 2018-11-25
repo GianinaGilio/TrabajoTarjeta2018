@@ -38,17 +38,17 @@ interface TarjetaInterface {
   public function descuentoSaldo(TiempoInterface $tiempo, ColectivoInterface $colectivo);
 
   /**
-     * Devuelve el id de la tarjeta
-     *
-     * @return int
-     */
+   * Devuelve el id de la tarjeta
+   *
+   * @return int
+   */
     public function obtenerID();
 
-     /**
-     * Descuenta los viajes plus de la tarjeta
-     * Si es posible, se realiza el descuento y devuelve TRUE, si no FALSE
-     * @return bool
-     */
+      /**
+       * Descuenta los viajes plus de la tarjeta
+       * Si es posible, se realiza el descuento y devuelve TRUE, si no FALSE
+       * @return bool
+       */
     public function descuentoViajesPlus();
 
     /**
