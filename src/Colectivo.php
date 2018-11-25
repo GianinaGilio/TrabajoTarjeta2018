@@ -2,20 +2,20 @@
 
 namespace TrabajoTarjeta;
 
-class Colectivo implements ColectivoInterface{
+class Colectivo implements ColectivoInterface {
     protected $lin;
-	protected $emp;
-	protected $num;
+  protected $emp;
+  protected $num;
 
-	public function __construct($lin, $emp, $num) {
+  public function __construct($lin, $emp, $num) {
         $this->lin = $lin;
-		$this->emp = $emp;
-		$this->num = $num;
+    $this->emp = $emp;
+    $this->num = $num;
     }
 
     
     public function linea(){
-	return $this->lin;
+  return $this->lin;
     }
 
     
@@ -37,10 +37,10 @@ class Colectivo implements ColectivoInterface{
         }
         else
         {
-			$colectivo = new Colectivo(144,"RosarioBus",23);
+      $colectivo = new Colectivo(144,"RosarioBus",23);
             $tarjeta->descuentoSaldo($tiempo, $colectivo);
-			$boleto = new Boleto ($tarjeta->obtenerPrecio(),$colectivo,$tarjeta,$tiempo);
-			return $boleto;
+      $boleto = new Boleto ($tarjeta->obtenerPrecio(),$colectivo,$tarjeta,$tiempo);
+      return $boleto;
         }
     }
 

@@ -1,7 +1,7 @@
 <?php
 namespace TrabajoTarjeta;
 
-interface TiempoInterface{
+interface TiempoInterface {
 
 /** 
 *   Devuelve el tiempo actual del momento en el que se llamo a la funcion
