@@ -76,34 +76,23 @@ class Tarjeta implements TarjetaInterface {
         
         if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
         {
-           if($hora >= 6 && $hora <= 22)
-		   {
-			
-			if($dia == "Mon" || $dia == "Tue" || $dia == "Wed" || $dia == "Thu" || $dia == "Fri")
-			{
+         
 				if(($tiempo->time())-($this->ultimopago) <= 3600)
 				{	
 					$this->banderaTrasb=TRUE;
 					$this->cantTrasb=1;
 					return $this->banderaTrasb;
 				}
-			}
 			
-			if($dia == "Sun")
-			{
-			  if(($tiempo->time())-($this->ultimopago) <= 5400)
+			
+			 /* if(($tiempo->time())-($this->ultimopago) <= 5400)
 			  {
 				$this->banderaTrasb=TRUE;
 				$this->cantTrasb=1;
 				return $this->banderaTrasb;
-			   }
-			}
-		}
+			   }}
 		
-			if($dia=="Sat")
-			{
-              if($hora >= 6 && $hora <= 14)
-              {
+		
 				if(($tiempo->time())-($this->ultimopago) <= 3600)
 				{
 					$this->banderaTrasb=TRUE;
@@ -131,8 +120,9 @@ class Tarjeta implements TarjetaInterface {
                 $this->cantTrasb=1;
                 return $this->banderaTrasb;
               }
-          }
+          }*/
         }
+      }
       
     $this->banderaTrasb=FALSE;
     return $this->banderaTrasb;
