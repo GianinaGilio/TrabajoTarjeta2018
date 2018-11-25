@@ -1,7 +1,5 @@
 [![Build Status](https://travis-ci.org/GianinaGilio/TrabajoTarjeta2018.svg?branch=master)](https://travis-ci.org/GianinaGilio/TrabajoTarjeta2018)
-
 [![Coverage Status](https://coveralls.io/repos/github/GianinaGilio/TrabajoTarjeta2018/badge.svg?branch=master)](https://coveralls.io/github/GianinaGilio/TrabajoTarjeta2018?branch=master)
-
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/GianinaGilio/TrabajoTarjeta2018/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/GianinaGilio/TrabajoTarjeta2018/?branch=master)
 
 # Integrantes: Monza, Gilio.
