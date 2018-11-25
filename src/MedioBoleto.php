@@ -123,6 +123,77 @@ class MedioBoletoUni extends MedioBoleto {
 	protected $lineaUltColectivo;
 
 
+	
+public function trasbordoMedioUni(TiempoInterface $tiempo, ColectivoInterface $colectivo)	{		
+	if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
+	{
+	if($hora >= 6 && $hora <= 22)
+	{
+		if($dia == "Mon" || $dia == "Tue" || $dia == "Wed" || $dia == "Thu" || $dia == "Fri")
+		{
+		if(($tiempo->time())-($this->ultimopago) <= 3600)
+		{
+			$this->ultimopago = $tiempo->time();
+			$this->lineaUltColectivo = $colectivo->linea();
+			$this->saldo-= (33*$this->precio)/100;
+			$this->banderaTrasb=TRUE;
+			$this->cantTrasb=1;
+			return TRUE;
+		}
+		}
+		
+		if($dia == "Sun")
+		{
+		if(($tiempo->time())-($this->ultimopago) <= 5400)
+		{
+			$this->ultimopago = $tiempo->time();
+			$this->saldo-= (33*$this->precio)/100;
+			$this->banderaTrasb=TRUE;
+			$this->cantTrasb=1;
+			return TRUE;
+		}
+		}
+		
+	}
+
+	if($dia=="Sat")
+	{
+		if($hora >= 6 && $hora <= 14)
+		{
+		if(($tiempo->time())-($this->ultimopago) <= 3600)
+		{
+			$this->ultimopago = $tiempo->time();
+			$this->saldo-= (33*$this->precio)/100;
+			$this->banderaTrasb=TRUE;
+			$this->cantTrasb=1;
+			return TRUE;
+		}
+		}
+
+		if($hora >= 14 && $hora <= 22){
+		if(($tiempo->time())-($this->ultimopago) <= 5400)
+		{
+			$this->ultimopago = $tiempo->time();
+			$this->saldo-= (33*$this->precio)/100;
+			$this->banderaTrasb=TRUE;
+			$this->cantTrasb=1;
+			return TRUE;
+		}
+		}
+	}
+
+	if($hora > 22 || $hora < 6){
+		if(($tiempo->time())-($this->ultimopago) <= 5400)
+		{
+			$this->ultimopago = $tiempo->time();
+			$this->saldo-= (33*$this->precio)/100;
+			$this->banderaTrasb=TRUE;
+			$this->cantTrasb=1;
+			return TRUE;
+		}
+	}
+	}
+}
 
 	public function descuentoSaldo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
 		$dia=date("D", $tiempo->time());
@@ -216,74 +287,11 @@ class MedioBoletoUni extends MedioBoleto {
 			}
 
 			//TRASBORDO DE MEDIO BOLETO
-		  if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
-		  {
-			if($hora >= 6 && $hora <= 22)
+			if (trasbordoMedioUni($tiempo, $colectivo))
 			{
-			  if($dia == "Mon" || $dia == "Tue" || $dia == "Wed" || $dia == "Thu" || $dia == "Fri")
-			  {
-				if(($tiempo->time())-($this->ultimopago) <= 3600)
-				{
-				  $this->ultimopago = $tiempo->time();
-				  $this->lineaUltColectivo = $colectivo->linea();
-				  $this->saldo-= (33*$this->precio)/100;
-				  $this->banderaTrasb=TRUE;
-				  $this->cantTrasb=1;
-				  return TRUE;
-				}
-			  }
-			  
-			  if($dia == "Sun")
-			  {
-				if(($tiempo->time())-($this->ultimopago) <= 5400)
-				{
-				  $this->ultimopago = $tiempo->time();
-				  $this->saldo-= (33*$this->precio)/100;
-				  $this->banderaTrasb=TRUE;
-				  $this->cantTrasb=1;
-				  return TRUE;
-				}
-			  }
-			  
+				return TRUE;
 			}
-	  
-			if($dia=="Sat")
-			{
-			  if($hora >= 6 && $hora <= 14)
-			  {
-				if(($tiempo->time())-($this->ultimopago) <= 3600)
-				{
-				  $this->ultimopago = $tiempo->time();
-				  $this->saldo-= (33*$this->precio)/100;
-				  $this->banderaTrasb=TRUE;
-				  $this->cantTrasb=1;
-				  return TRUE;
-				}
-			  }
-	  
-			  if($hora >= 14 && $hora <= 22){
-				if(($tiempo->time())-($this->ultimopago) <= 5400)
-				{
-				  $this->ultimopago = $tiempo->time();
-				  $this->saldo-= (33*$this->precio)/100;
-				  $this->banderaTrasb=TRUE;
-				  $this->cantTrasb=1;
-				  return TRUE;
-				}
-			  }
-			}
-	  
-			if($hora > 22 || $hora < 6){
-			  if(($tiempo->time())-($this->ultimopago) <= 5400)
-				{
-				  $this->ultimopago = $tiempo->time();
-				  $this->saldo-= (33*$this->precio)/100;
-				  $this->banderaTrasb=TRUE;
-				  $this->cantTrasb=1;
-				  return TRUE;
-				}
-			}
-		  }//FIN TRASBORDO DE MEDIO BOLETO
+			//FIN TRASBORDO DE MEDIO BOLETO
 
 
 		$this->ultimopago = $tiempo->time();
