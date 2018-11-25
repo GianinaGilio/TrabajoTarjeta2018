@@ -130,9 +130,9 @@ public function trasbordoMedioUni(TiempoInterface $tiempo, ColectivoInterface $c
   if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
 	{
 	/*if($hora >= 6 && $hora <= 22)
-	{
+	{*/
 		if($dia == "Mon" || $dia == "Tue" || $dia == "Wed" || $dia == "Thu" || $dia == "Fri")
-		{*/
+		{
 		if(($tiempo->time())-($this->ultimopago) <= 3600)
 		{
 			$this->ultimopago = $tiempo->time();
@@ -194,7 +194,7 @@ public function trasbordoMedioUni(TiempoInterface $tiempo, ColectivoInterface $c
 			return TRUE;
 		}
 	}
-	}*/
+*/}
 }
 public function trasbordoPrecioNormal(TiempoInterface $tiempo, ColectivoInterface $colectivo){
   $dia=date("D", $tiempo->time());
