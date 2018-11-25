@@ -15,11 +15,11 @@ class TiempoFalso implements TiempoInterface {
      *@param int
      * sin retorno
      */
-    public function avanzar($segundos){
+    public function avanzar($segundos) {
         $this->tiempo += $segundos;
     }
 
-    public function time(){
+    public function time() {
         return $this->tiempo;
     }
 
