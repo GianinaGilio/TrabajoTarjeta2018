@@ -109,7 +109,7 @@ class MedioBoletoTest extends TestCase {
   }
 	
 	
-    /*public function testTrasbordoNoche(){
+  public function testTrasbordoNoche(){
 	$tiempo= new TiempoFalso;
 	$tiempo->avanzar(1538704800);
 	
@@ -129,7 +129,7 @@ class MedioBoletoTest extends TestCase {
 	$tiempo->avanzar(4200);
 	$this->assertTrue($tarjeta1->descuentoSaldo($tiempo,$colectivo2));
 	$this->assertEquals($tarjeta1->obtenerSaldo(),(32.6-(7.4*0.33)));
-    }*/
+    }
 	
 	
 	
