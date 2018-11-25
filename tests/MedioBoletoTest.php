@@ -110,27 +110,31 @@ class MedioBoletoTest extends TestCase {
 	
 	
   public function testTrasbordoNoche(){
-	$tiempo= new TiempoFalso;
-	$tiempo->avanzar(1538704800);
-	
-	$colectivo1 = new Colectivo(144,"RosarioBus",3);
-	$colectivo2 = new Colectivo(101,"RosarioBus",6);	
-	    
-	$tarjeta1 = new MedioBoleto(23);
-	$tarjeta2 = new MedioBoletoUni(12);
-	    
-	$tarjeta1->recargar(40);
-	$tarjeta2->recargar(40);
+    $colectivo = new Colectivo(144,"RosarioBus",6);
+    $colectivo2 = new Colectivo(101,"RosarioBus",7);
+    $tarjetam = new MedioBoleto(45);
 
-	$this->assertTrue($tarjeta1->descuentoSaldo($tiempo,$colectivo1));
-	$this->assertTrue($tarjeta2->descuentoSaldo($tiempo,$colectivo2));
-	
-	  // Avanzo 70 minutos para comprobar que, por ser de noche, funciona el trasbordo.
-	$tiempo->avanzar(4200);
-	$this->assertTrue($tarjeta1->descuentoSaldo($tiempo,$colectivo2));
-	$this->assertEquals($tarjeta1->obtenerSaldo(),(32.6-(7.4*0.33)));
-    }
-	
+    $tiempo = new TiempoFalso;
+    $tiempo->avanzar(1535693521);
+    
+//Recargo la tarjeta y pago por primera vez.
+    $tarjetam->recargar(100);
+    $this->assertTrue($tarjetam->descuentoSaldo($tiempo,$colectivo));
+
+//Pago por segunda vez despues de 65 minutos y verifico que funcione el trasbordo.
+    $tiempo->avanzar(3900);
+    $this->assertTrue($tarjetam->descuentoSaldo($tiempo,$colectivo2));
+    $this->assertEquals($tarjetam->obtenerSaldo(),(92.6-(7.4*0.33)));
+
+//Pago unos minutos despues, verificando que ahora no se aplique el trasbordo.
+    $tiempo->avanzar(546);
+    $this->assertTrue($tarjetam->descuentoSaldo($tiempo,$colectivo));
+    $this->assertEquals($tarjetam->obtenerSaldo(),(90.158-7.4));
+
+    $tiempo->avanzar(1000);
+    $this->assertTrue($tarjetam->descuentoSaldo($tiempo,$colectivo2));
+    $this->assertEquals($tarjetam->obtenerSaldo(),(82.758-(7.4*0.33)));
+}	
 	
 	
     public function testTrasbordoMedioUni(){
