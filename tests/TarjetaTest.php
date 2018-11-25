@@ -83,35 +83,33 @@ class TarjetaTest extends TestCase {
     $this->assertEquals($tarjeta->obtenerSaldo(),15.6);
 
   }
+ //Testeo que el trasbordo cumpla con los requisitos para funcionar.
+ public function testTrasbordoTarjeta(){
+    $colectivo = new Colectivo(144,"RosarioBus",6);
+    $colectivo2 = new Colectivo(101,"RosarioBus",7);
+    $tarjeta = new Tarjeta(45);
 
-  public function testTrasbordoTarjeta(){
-    $colectivo = new Colectivo(144,"RosarioBus",5);
-    $colectivo2 = new Colectivo(143,"RosarioBus",5);
+    $tiempo = new TiempoFalso;
+    $tiempo->avanzar(1535563521);
     
-	$tarjetaa=new Tarjeta(235);
-    $tarjetaa->recargar(100);
-    
-	$tiempo = new TiempoFalso(1539545889);
-    
-    //$dia=date("D", $tiempo->time());
-    //$hora=idate("H", $tiempo->time());
+  //Recargo la tarjeta y pago por primera vez.
+    $tarjeta->recargar(100);
+    $this->assertTrue($tarjeta->descuentoSaldo($tiempo,$colectivo));
 
-    //verifico que las lines de colectivos son distintas, y que la cant de trasb es correcta
-    // por lo que deberia entrar al if.
-    $this->assertTrue($colectivo->linea() != $colectivo2->linea());
-    $this->assertEquals($tarjetaa->cantTrasb(),1);
-    
-    $colectivo->pagarCon($tiempo,$tarjetaa);
-    $this->assertEquals($tarjetaa->obtenerSaldo(),85.20);
-    
-	$this->assertEquals($tarjetaa->cantTrasb(),0);
-    
-	$tiempo->avanzar(1000);
-	
-	$colectivo2->pagarCon($tiempo,$tarjetaa);
-    $this->assertEquals($tarjetaa->obtenerSaldo(),(80.316));
+  //Pago por segunda vez despues de 20 minutos y verifico que funcione el trasbordo.
+    $tiempo->avanzar(1200);
+    $this->assertTrue($tarjeta->descuentoSaldo($tiempo,$colectivo2));
+    $this->assertEquals($tarjeta->obtenerSaldo(),(85.2-(14.8*0.33)));
 
-  }
+  //Pago unos minutos despues, verificando que ahora no se aplique el trasbordo.
+    $tiempo->avanzar(546);
+    $this->assertTrue($tarjeta->descuentoSaldo($tiempo,$colectivo));
+    $this->assertEquals($tarjeta->obtenerSaldo(),(80.316-14.8));
+
+    $tiempo->avanzar(1000);
+    $this->assertTrue($tarjeta->descuentoSaldo($tiempo,$colectivo2));
+    $this->assertEquals($tarjeta->obtenerSaldo(),(65.516-(14.8*0.33)));
+}
 
 
 }
