@@ -204,7 +204,7 @@ public function trasbordoPrecioNormal(TiempoInterface $tiempo, ColectivoInterfac
 {
   if($hora >= 6 && $hora <= 22)
   {
-    if($dia > 0 %% <= 5)
+    if($dia > 0 && $dia <= 5)
     {
       if(($tiempo->time())-($this->ultimopago) <= 3600)
       {
