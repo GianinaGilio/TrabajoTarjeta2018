@@ -273,7 +273,7 @@ public function trasbordoMedioUni(TiempoInterface $tiempo, ColectivoInterface $c
       }
 
 			//TRASBORDO DE MEDIO BOLETO
-			if (trasbordoMedioUni($tiempo, $colectivo))
+			if ($this->trasbordoMedioUni($tiempo, $colectivo))
 			{
 				return TRUE;
 			}
