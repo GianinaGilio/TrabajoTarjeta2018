@@ -121,7 +121,7 @@ class Tarjeta implements TarjetaInterface {
                 return $this->banderaTrasb;
               }
           }*/
-        }
+        
     
       
     $this->banderaTrasb=FALSE;
