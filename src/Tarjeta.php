@@ -142,12 +142,12 @@ class Tarjeta implements TarjetaInterface {
         
         
           if ($this->trasbordo($tiempo, $colectivo)) {
-                $this->ultimopago = $tiempo->time();
+                /*$this->ultimopago = $tiempo->time();
                 $this->lineaUltColectivo = $colectivo->linea();
 
                 $this->saldo -= $this->strasbordo;
                 $this->cantTrasb = 1;
-                return TRUE;
+                */return TRUE;
             
           }
            
