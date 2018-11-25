@@ -129,72 +129,29 @@ public function trasbordoMedioUni(TiempoInterface $tiempo, ColectivoInterface $c
   $hora=idate("H", $tiempo->time());
   if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
 	{
-	if($hora >= 6 && $hora <= 22)
-	{
-		if($dia > 0 && $dia <= 5)
-		{
-		if(($tiempo->time())-($this->ultimopago) <= 3600)
-		{
-			$this->ultimopago = $tiempo->time();
+    
+    if(($tiempo->time())-($this->ultimopago) <= 3600){
+      $this->ultimopago = $tiempo->time();
 			$this->lineaUltColectivo = $colectivo->linea();
 			$this->saldo-= (33*$this->precio)/100;
 			$this->banderaTrasb=TRUE;
 			$this->cantTrasb=1;
-			return TRUE;
-		}
-		}
-	
-		if($dia == 0)
-		{
-		if(($tiempo->time())-($this->ultimopago) <= 5400)
-		{
-			$this->ultimopago = $tiempo->time();
-			$this->saldo-= (33*$this->precio)/100;
-			$this->banderaTrasb=TRUE;
-			$this->cantTrasb=1;
-			return TRUE;
-		}
-		}
+      return TRUE;
+    }
+    if(($tiempo->time())-($this->ultimopago) <= 5400){
+      if ($dia == 0 || $hora >= 6 && $hora <= 22 || $dia == 6 && $hora >= 14 && $hora <= 22){
+        $this->ultimopago = $tiempo->time();
+        $this->lineaUltColectivo = $colectivo->linea();
+        $this->saldo-= (33*$this->precio)/100;
+        $this->banderaTrasb=TRUE;
+        $this->cantTrasb=1;
+        return TRUE;
+      }
+    }
+    return FALSE;
+
+	}
 		
-	}
-
-	if($dia == 6)
-	{
-		if($hora >= 6 && $hora <= 14)
-		{
-		if(($tiempo->time())-($this->ultimopago) <= 3600)
-		{
-			$this->ultimopago = $tiempo->time();
-			$this->saldo-= (33*$this->precio)/100;
-			$this->banderaTrasb=TRUE;
-			$this->cantTrasb=1;
-			return TRUE;
-		}
-		}
-
-		if($hora >= 14 && $hora <= 22){
-		if(($tiempo->time())-($this->ultimopago) <= 5400)
-		{
-			$this->ultimopago = $tiempo->time();
-			$this->saldo-= (33*$this->precio)/100;
-			$this->banderaTrasb=TRUE;
-			$this->cantTrasb=1;
-			return TRUE;
-		}
-		}
-	}
-
-	if($hora > 22 || $hora < 6){
-		if(($tiempo->time())-($this->ultimopago) <= 5400)
-		{
-			$this->ultimopago = $tiempo->time();
-			$this->saldo-= (33*$this->precio)/100;
-			$this->banderaTrasb=TRUE;
-			$this->cantTrasb=1;
-			return TRUE;
-		}
-	}
- }
 }
 
 public function trasbordoPrecioNormal(TiempoInterface $tiempo, ColectivoInterface $colectivo){
@@ -211,7 +168,7 @@ public function trasbordoPrecioNormal(TiempoInterface $tiempo, ColectivoInterfac
     return TRUE;
   }
   if(($tiempo->time())-($this->ultimopago) <= 5400){
-    if ($dia == 0 && $hora >= 6 && $hora <= 22 || $dia == 6 && $hora >= 14 && $hora <= 22){
+    if ($dia == 0 || $hora >= 6 && $hora <= 22 || $dia == 6 && $hora >= 14 && $hora <= 22) {
       $this->ultimopago = $tiempo->time();
       $this->lineaUltColectivo = $colectivo->linea();
       $this->saldo-= (33*$this->precioNormal)/100;
