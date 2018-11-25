@@ -65,8 +65,7 @@ class Tarjeta implements TarjetaInterface {
     
      
   public function trasbordo(TiempoInterface $tiempo, ColectivoInterface $colectivo) {
-    $dia=date("l", $tiempo->time());
-    $hora=idate("H", $tiempo->time());
+    
     if($this->lineaUltColectivo != $colectivo->linea() && $this->cantTrasb==0)
     {
       
@@ -79,6 +78,8 @@ class Tarjeta implements TarjetaInterface {
         return TRUE;
       }
       if(($tiempo->time())-($this->ultimopago) <= 5400){
+        $dia=date("l", $tiempo->time());
+        $hora=idate("H", $tiempo->time());
         if ($dia == 0 || $hora >= 6 && $hora <= 22 || $dia == 6 && $hora >= 14 && $hora <= 22){
           $this->ultimopago = $tiempo->time();
           $this->lineaUltColectivo = $colectivo->linea();
